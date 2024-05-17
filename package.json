@@ -2,11 +2,9 @@
     "name": "celedrive",
     "version": "1.0.0",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
         "prepare": "husky",
         "lint:editorconfig": "editorconfig-checker",
-        "lint:ls": "ls-lint",
-        "lint": "npm run lint:ls && npm run lint:editorconfig"
+        "lint": "npm run lint:editorconfig"
     },
     "keywords": [],
     "author": "Tran Nguyen Thuong Truong",
@@ -15,8 +13,12 @@
     "devDependencies": {
         "@commitlint/cli": "^19.3.0",
         "@commitlint/config-conventional": "^19.2.2",
-        "@ls-lint/ls-lint": "2.2.3",
         "editorconfig-checker": "5.1.5",
         "husky": "^9.0.11"
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
     }
 }

@@ -1,8 +1,0 @@
-ls:
-  .dir: kebab-case
-  .js: kebab-case
-  .css: regex:([.a-z]*)([-.][a-z]+)*
-
-ignore:
-  - node_modules
-  - .git

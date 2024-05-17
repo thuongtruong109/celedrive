@@ -1,0 +1,14 @@
+{
+    "types": {
+        "build": {},
+        "chore": {},
+        "docs": {},
+        "feat": {},
+        "fix": {},
+        "perf": {},
+        "refactor": {},
+        "revert": {},
+        "style": {},
+        "test": {}
+    }
+}
