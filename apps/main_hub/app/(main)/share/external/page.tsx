@@ -4,8 +4,9 @@ import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from '@/_components/ui/button';
 import { useToast } from '@/lib/use-toast';
-
-const API_URI = 'http://localhost:8000';
+import { PiCopySimpleThin } from "react-icons/pi";
+import { AiOutlineCloudUpload } from "react-icons/ai";
+import { MdDone } from "react-icons/md";
 
 interface UploadResponse {
   path: string;
@@ -13,7 +14,7 @@ interface UploadResponse {
 
 export const uploadFile = async (data: FormData) => {
   try {
-    const response = await axios.post<UploadResponse>(`${API_URI}/upload`, data);
+    const response = await axios.post<UploadResponse>(`${process.env.NEXT_PUBLIC_SHARE_EXTERNAL_API_URI}/upload`, data);
     return response.data;
   } catch (error: unknown) {
     if (error instanceof Error) console.log('Error while calling the API ', error.message);
@@ -42,7 +43,7 @@ const ShareExternalPage: React.FC = () => {
           toast({
             variant: "success",
             title: "File Uploaded",
-            description: "Now everyone can view your file",
+            description: "The link is ready to be shared",
           });
         }
       }
@@ -50,25 +51,31 @@ const ShareExternalPage: React.FC = () => {
     getImage();
   }, [file])
 
-  const test = () => {
-    toast({
-      variant: "success",
-      title: "File Uploaded",
-      description: "Now everyone can view your file",
-    });
-  }
-
   const onUploadClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
   }
+  
+  const [isCopied, setIsCopied] = useState(false);
+
+  const copyLink = (link: string) => {
+    navigator.clipboard.writeText(link).then(function() {
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    }, function(err) {
+      console.error('Async: Could not copy text: ', err);
+    });
+  }
 
   return (
-    <div className='container'>
-      <p onClick={test}>Upload and share the download link.</p>
+    <div className='container flex flex-col items-center space-y-8'>
+      <h2 className="text-xl font-semibold">Upload and share the download link.</h2>
 
-      <Button onClick={onUploadClick}>Upload</Button>
+      <Button onClick={onUploadClick}>
+        <AiOutlineCloudUpload />
+        <span>Upload</span>
+      </Button>
 
       <input type="file"
         ref={fileInputRef}
@@ -76,9 +83,14 @@ const ShareExternalPage: React.FC = () => {
         onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
       />
 
-      {/* <a href={result} target="_blank" rel="noreferrer">{result}</a> */}
-
-      <a href={result} target="_blank" rel="noreferrer">http://localhost:8000/file/665567fbd5c5f4b72bd65cdf</a>
+      <div className="flex items-center space-x-2">
+        <a href={result} target="_blank" rel="noreferrer" className="hover">{result}</a>
+        { result != '' && <Button variant={"outline"} onClick={() => copyLink(result)}>
+          { isCopied ? <MdDone /> : <PiCopySimpleThin /> }
+            <span>Copy</span>
+          </Button>
+        }
+      </div>
     </div>
   );
 }

@@ -24,7 +24,7 @@ export default function RootLayout({
         <ConvexClientProvider>
           <Toaster />
           <Header />
-          <main className="container min-h-[calc(100vh-6rem)]">{children}</main>
+          <main className="container">{children}</main>
           <Footer />
         </ConvexClientProvider>
       </body>

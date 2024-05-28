@@ -6,9 +6,9 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="pt-12 flex gap-8">
+    <section className="pt-12 flex space-x-8 space-y-8 min-h-[calc(100vh-6rem)]">
         <SideNav />
         <div className="w-full">{children}</div>
-    </div>
+    </section>
   );
 }

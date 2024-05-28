@@ -1,10 +1,14 @@
 "use client";
 
-import { Button } from "@/_components/ui/button";
 import clsx from "clsx";
-import { FileIcon, StarIcon, TrashIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { IoFileTrayFullOutline, IoFileTrayFull } from "react-icons/io5";
+import { SlStar } from "react-icons/sl";
+import { TiStarFullOutline } from "react-icons/ti";
+import { PiTrashLight, PiTrashFill } from "react-icons/pi";
+import { HiOutlineUserGroup, HiMiniUserGroup } from "react-icons/hi2";
+import { RiUserShared2Line, RiStackshareLine, RiUserShared2Fill } from "react-icons/ri";
 
 export function SideNav() {
   const pathname = usePathname();
@@ -12,34 +16,40 @@ export function SideNav() {
   const menu = [
     [
       {
-        icon: FileIcon,
+        icon: IoFileTrayFullOutline,
+        matchIcon: IoFileTrayFull,
         label: "Dashboard",
         href: "/dashboard/files",
       },
       {
-        icon: StarIcon,
+        icon: SlStar,
+        matchIcon: TiStarFullOutline,
         label: "Favorites",
         href: "/dashboard/favorites",
       },
       {
-        icon: TrashIcon,
+        icon: PiTrashLight,
+        matchIcon: PiTrashFill,
         label: "Trash",
         href: "/dashboard/trash",
       },
     ],
     [
       {
-        icon: FileIcon,
+        icon: HiOutlineUserGroup,
+        matchIcon: HiMiniUserGroup,
         label: "External",
         href: "/share/external",
       },
       {
-        icon: StarIcon,
+        icon: RiUserShared2Line,
+        matchIcon: RiUserShared2Fill,
         label: "Internal single",
         href: "/share/internal-single",
       },
       {
-        icon: TrashIcon,
+        icon: RiStackshareLine,
+        matchIcon: RiStackshareLine,
         label: "Internal multi",
         href: "/share/internal-multi",
       },
@@ -47,14 +57,16 @@ export function SideNav() {
   ]
 
   return (
-    <nav className="w-40 flex flex-col sapce-y-2 divide-y divide-slate-300/50">
+    <nav className="w-40 flex flex-col space-y-2 divide-y divide-slate-300/50">
       {
         menu.map((items, index) => (
-          <ul key={index} className="w-40 flex flex-col sapce-y-2">
+          <ul key={index} className="w-40 flex flex-col space-y-2">
             {items.map((item) => (
-              <li key={item.label}>
-                <Link href="/dashboard/files" className={clsx("flex gap-2 w-full hover:bg-purple-500 hover:text-white px-2.5 py-2 rounded-md", {"text-blue-500": pathname.includes("/dashboard/files")})}>
-                  <item.icon />
+              <li key={item.label} title={item.label}>
+                <Link href={item.href} className={clsx("flex items-center space-x-2 w-full hover:bg-blue-100 px-2.5 py-2 rounded-md font-normal", {"text-blue-500 bg-blue-100 font-medium": pathname.includes(item.href)})}>
+                  {
+                    pathname.includes(item.href) ? <item.matchIcon /> : <item.icon />
+                  }
                   <span>{item.label}</span>
                </Link>
               </li>

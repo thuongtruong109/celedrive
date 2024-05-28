@@ -15,7 +15,7 @@ import { RiUserShared2Line, RiStackshareLine } from "react-icons/ri";
 
 export default function LandingPage() {
   return (
-    <section className="lg:px-8 mx-auto pb-8 pt-20 sm:pt-36 md:pt-48 lg:pt-60 xl:pt-72 sm:max-w-lg md:max-w-2xl lg:max-w-3xl text-center flex flex-col items-center">
+    <section className="lg:px-8 mx-auto min-h-[calc(100vh-6rem)] sm:max-w-lg md:max-w-2xl lg:max-w-3xl text-center flex flex-col items-center justify-center">
         <h1 className="text-4xl tracking-normal text-gray-900 sm:text-6xl lilita_font">
           The easiest way to upload and share files
         </h1>
