@@ -10,7 +10,7 @@ env:
 
 jobs:
   linting:
-    name: Linting
+    name: config-lint
     runs-on: ubuntu-latest
     steps:
       - name: Install NodeJS

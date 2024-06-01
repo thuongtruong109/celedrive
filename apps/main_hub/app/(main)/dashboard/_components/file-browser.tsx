@@ -5,7 +5,7 @@ import { api } from "../../../../convex/_generated/api";
 import { UploadButton } from "./upload-button";
 import { FileCard } from "./file-card";
 import Image from "next/image";
-import { GridIcon, Loader2, RowsIcon } from "lucide-react";
+import { Loader2, RowsIcon } from "lucide-react";
 import { SearchBar } from "./search-bar";
 import { useState } from "react";
 import { DataTable } from "./file-table";
@@ -19,7 +19,8 @@ import {
   SelectValue,
 } from "@/_components/ui/select";
 import { Doc } from "../../../../convex/_generated/dataModel";
-import { Label } from "@/_components/ui/label";
+import { BsGridFill } from "react-icons/bs";
+import { CiBoxList } from "react-icons/ci";
 
 function Placeholder() {
   return (
@@ -84,35 +85,27 @@ export function FileBrowser({
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold">{title}</h1>
-
-        <SearchBar query={query} setQuery={setQuery} />
-
-        <UploadButton />
-      </div>
-
       <Tabs defaultValue="grid">
-        <div className="flex justify-between items-center">
-          <TabsList className="mb-2">
-            <TabsTrigger value="grid" className="flex gap-2 items-center">
-              <GridIcon />
-              Grid
-            </TabsTrigger>
-            <TabsTrigger value="table" className="flex gap-2 items-center">
-              <RowsIcon /> Table
-            </TabsTrigger>
-          </TabsList>
+        <div className="flex justify-between items-center mb-6">
+          <SearchBar query={query} setQuery={setQuery} />
 
-          <div className="flex gap-2 items-center">
-            <Label htmlFor="type-select">Type Filter</Label>
+          <div className="flex space-x-4 items-center">
+            <TabsList className="bg-slate-100 border">
+              <TabsTrigger value="grid" className="p-[7px] text-lg">
+                <BsGridFill />
+              </TabsTrigger>
+              <TabsTrigger value="table" className="p-2 text-lg">
+                <CiBoxList />
+              </TabsTrigger>
+            </TabsList>
+
             <Select
               value={type}
               onValueChange={(newType) => {
                 setType(newType as any);
               }}
             >
-              <SelectTrigger id="type-select" className="w-[180px]">
+              <SelectTrigger id="type-select" className="w-32">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -123,6 +116,8 @@ export function FileBrowser({
               </SelectContent>
             </Select>
           </div>
+
+          <UploadButton />
         </div>
 
         {isLoading && (
@@ -133,7 +128,7 @@ export function FileBrowser({
         )}
 
         <TabsContent value="grid">
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-4 gap-4">
             {modifiedFiles?.map((file) => {
               return <FileCard key={file._id} file={file} />;
             })}

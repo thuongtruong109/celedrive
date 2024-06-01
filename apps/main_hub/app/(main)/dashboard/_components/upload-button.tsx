@@ -30,6 +30,7 @@ import { useState } from "react";
 import { useToast } from "@/lib/use-toast";
 import { Loader2 } from "lucide-react";
 import { Doc } from "../../../../convex/_generated/dataModel";
+import { RiUploadCloud2Line } from "react-icons/ri";
 
 const formSchema = z.object({
   title: z.string().min(1).max(200),
@@ -118,7 +119,10 @@ export function UploadButton() {
       }}
     >
       <DialogTrigger asChild>
-        <Button>Upload File</Button>
+        <Button>
+          <RiUploadCloud2Line />
+          <span>Upload</span>
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

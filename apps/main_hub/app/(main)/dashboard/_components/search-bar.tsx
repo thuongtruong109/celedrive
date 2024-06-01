@@ -13,6 +13,7 @@ import { Loader2, SearchIcon } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { BsSearch } from "react-icons/bs";
 
 const formSchema = z.object({
   query: z.string().min(0).max(200),
@@ -37,7 +38,6 @@ export function SearchBar({
   }
 
   return (
-    <div>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -65,10 +65,9 @@ export function SearchBar({
             {form.formState.isSubmitting && (
               <Loader2 className="h-4 w-4 animate-spin" />
             )}
-            <SearchIcon /> Search
+            <BsSearch /> Search
           </Button>
         </form>
       </Form>
-    </div>
   );
 }

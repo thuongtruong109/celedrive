@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -69,14 +69,13 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
-  
+
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
-    /* background-image: url('https://img.freepik.com/free-vector/white-abstract-wallpaper_23-2148830026.jpg?t=st=1716885718~exp=1716889318~hmac=88d71d18e9bfc9a205098071ae64d8148b551876c132a2e8881a1e3c1b8fd6a1&w=1380'); */
-    background-image: url('/bg.jpg');
+    background-image: url("/bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -88,5 +87,4 @@
     font-weight: 400;
     font-style: normal;
   }
-  
 }

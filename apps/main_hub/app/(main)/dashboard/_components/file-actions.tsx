@@ -7,10 +7,6 @@ import {
   DropdownMenuTrigger,
 } from "@/_components/ui/dropdown-menu";
 import {
-  FileIcon,
-  MoreVertical,
-  StarHalf,
-  StarIcon,
   TrashIcon,
   UndoIcon,
 } from "lucide-react";
@@ -29,6 +25,10 @@ import { useMutation, useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { useToast } from "@/lib/use-toast";
 import { Protect } from "@clerk/nextjs";
+import { LuMoreVertical } from "react-icons/lu";
+import { MdFileDownload } from "react-icons/md";
+import { FiStar } from "react-icons/fi";
+import { GoStarFill } from "react-icons/go";
 
 export function FileCardActions({
   file,
@@ -44,6 +44,15 @@ export function FileCardActions({
   const me = useQuery(api.users.getMe);
 
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+
+  const onDownload = (path: string) => {
+    let a = document.createElement('a') as HTMLAnchorElement;
+    a.href = path;
+    a.setAttribute('download', path.split('/').pop() || '');
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
 
   return (
     <>
@@ -78,17 +87,18 @@ export function FileCardActions({
 
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <MoreVertical />
+          <LuMoreVertical />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem
             onClick={() => {
               if (!file.url) return;
-              window.open(file.url, "_blank");
+              onDownload(file.url);
             }}
-            className="flex gap-1 items-center cursor-pointer"
+            className="flex gap-1 items-center cursor-pointer !text-purple-600"
           >
-            <FileIcon className="w-4 h-4" /> Download
+            <MdFileDownload className="w-4 h-4" />
+            <span className="text-purple-600">Download</span>
           </DropdownMenuItem>
 
           <DropdownMenuItem
@@ -100,12 +110,14 @@ export function FileCardActions({
             className="flex gap-1 items-center cursor-pointer"
           >
             {isFavorited ? (
-              <div className="flex gap-1 items-center">
-                <StarIcon className="w-4 h-4" /> Unfavorite
+              <div className="flex gap-1 items-center text-yellow-600">
+                <GoStarFill className="w-4 h-4" />
+                <span>Unfavorite</span>
               </div>
             ) : (
-              <div className="flex gap-1 items-center">
-                <StarHalf className="w-4 h-4" /> Favorite
+              <div className="flex gap-1 items-center text-blue-600">
+                <FiStar className="w-4 h-4" />
+                <span>Favorite</span>
               </div>
             )}
           </DropdownMenuItem>
