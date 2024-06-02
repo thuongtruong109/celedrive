@@ -1,7 +1,7 @@
 {
-  "name": "p2p-file-transfer",
+  "name": "@celedrive/internal_multi",
   "version": "0.1.0",
-  "homepage": "https://chidokun.github.io/p2p-file-transfer",
+  "homepage": "https://thuongtruong109.github.io/celedrive",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
@@ -27,7 +27,8 @@
   "scripts": {
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
+    "start:dev": "export PORT=3002 react-scripts start",
+    "start": "set PORT=3002 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
