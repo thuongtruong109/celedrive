@@ -7,30 +7,6 @@ function generateID() {
   )}-${Math.trunc(Math.random() * 999)}`
 }
 
-// let currentTab = 0;
-
-// let btnTab = document.querySelectorAll("body nav button")
-// btnTab[0].classList.add("active")
-
-// for (let i = 0; i < btnTab.length; i++) {
-//   btnTab[i].addEventListener("click", function () {
-//     if (i == 0) {
-//       x[0].style.display = "block";
-//       x[1].style.display = "none";
-
-//       btnTab[1].classList.remove("active")
-//       btnTab[0].classList.add("active")
-//     }
-//     else {
-//       x[0].style.display = "none";
-//       x[1].style.display = "block";
-
-//       btnTab[0].classList.remove("active")
-//       btnTab[1].classList.add("active")
-//     }
-//   })
-// }
-
 document
   .querySelector('#sender-start-con-btn')
   .addEventListener('click', function () {

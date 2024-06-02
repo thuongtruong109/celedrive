@@ -12,7 +12,7 @@ interface UploadResponse {
   path: string;
 }
 
-export const uploadFile = async (data: FormData) => {
+const uploadFile = async (data: FormData) => {
   try {
     const response = await axios.post<UploadResponse>(`${process.env.NEXT_PUBLIC_SHARE_EXTERNAL_API_URI}/upload`, data);
     return response.data;
@@ -85,7 +85,7 @@ const ShareExternalPage: React.FC = () => {
 
       <div className="flex items-center space-x-2">
         <a href={result} target="_blank" rel="noreferrer" className="hover">{result}</a>
-        { result != '' && <Button variant={"outline"} onClick={() => copyLink(result)}>
+        { result != '' && <Button variant="outline" onClick={() => copyLink(result)}>
           { isCopied ? <MdDone /> : <PiCopySimpleThin /> }
             <span>Copy</span>
           </Button>
