@@ -18,7 +18,7 @@ const Header: FC = () => {
     <header className="relative z-10 py-2 items-center container mx-auto justify-between flex">
         <Link href="/" className="flex gap-2 items-center text-xl text-black">
           <Image src="/logo.png" width="30" height="30" alt="logo" />
-          <span className="gradient-text text-2xl font-semibold">Celedrive</span>
+          <span className="gradient-text text-2xl font-semibold hidden min-[480px]:block">Celedrive</span>
         </Link>
 
         {/* <SignedIn>

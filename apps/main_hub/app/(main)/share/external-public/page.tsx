@@ -9,7 +9,7 @@ import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 
 interface UploadResponse {
-  path: string;
+  id: string;
 }
 
 const uploadFile = async (data: FormData) => {
@@ -22,7 +22,7 @@ const uploadFile = async (data: FormData) => {
   }
 }
 
-const ShareExternalPage: React.FC = () => {
+const ShareExternalPublicPage: React.FC = () => {
   const { toast } = useToast();
   
   const [file, setFile] = useState<File | null>(null);
@@ -39,7 +39,7 @@ const ShareExternalPage: React.FC = () => {
 
         const response = await uploadFile(data);
         if (response) {
-          setResult(response.path);
+          setResult(`${process.env.NEXT_PUBLIC_SHARE_EXTERNAL_API_URI}/file/${response.id}`);
           toast({
             variant: "success",
             title: "File Uploaded",
@@ -95,4 +95,4 @@ const ShareExternalPage: React.FC = () => {
   );
 }
 
-export default ShareExternalPage;
+export default ShareExternalPublicPage;

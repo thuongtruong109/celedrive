@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const DBConnection =  async() => {
-    const MONGO_URI = 'mongodb+srv://pattlactroi:pattlactroi@cluster0.0r02fd6.mongodb.net/celedrive';
+    const MONGO_URI = process.env.MONGGO_URI || 'mongodb://localhost:27017/external_server';
     
     try {
         await mongoose.connect(MONGO_URI, { useNewUrlParser: true });

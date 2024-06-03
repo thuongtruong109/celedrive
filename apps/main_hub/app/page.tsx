@@ -11,7 +11,9 @@ import {
 } from "@/_components/ui/dropdown-menu";
 import { Button } from "@/_components/ui/button";
 import { HiOutlineUserGroup } from "react-icons/hi2";
-import { RiUserShared2Line, RiStackshareLine } from "react-icons/ri";
+import { RiUserShared2Line, RiStackshareLine, RiUserReceived2Line } from "react-icons/ri";
+import { MdSecurity } from "react-icons/md";
+import { GoQuestion } from "react-icons/go";
 
 export default function LandingPage() {
   return (
@@ -23,10 +25,18 @@ export default function LandingPage() {
           Make and account and start managing your files in less than a
           minute.
         </p>
-        <div className="mt-10 flex items-center justify-center gap-x-6">
+        <div className="mt-10 flex flex-col min-[470px]:flex-row items-center justify-center gap-6">
+          <Link
+            href="/guide"
+            className="rounded-md bg-slate-300 hover:bg-slate-400/50 px-3 py-[9px] flex items-center space-x-1.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            <GoQuestion />
+            <span>Guide</span>
+          </Link>
+
           <Link
             href="/dashboard/files"
-            className="rounded-md bg-purple-600 px-3 py-2.5 flex items-center space-x-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="rounded-md bg-purple-500 hover:bg-purple-600 px-3 py-[9px] flex items-center space-x-1.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             <IoFolderOpenOutline />
             <span>Access files</span>
@@ -36,7 +46,7 @@ export default function LandingPage() {
             <DropdownMenuTrigger>
               <Button
                 variant="outline"
-                className="text-sm font-semibold leading-6 text-gray-500"
+                className="text-sm font-semibold leading-6 bg-blue-500 hover:bg-blue-600 text-white hover:text-white"
               >
                 <span>Start sharing</span>
                 <LuChevronsRight />
@@ -44,15 +54,27 @@ export default function LandingPage() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuItem>
-                <Link href="/share/external" className="flex items-center space-x-1 w-full">
+                <Link href="/share/external-public" className="flex items-center space-x-1 w-full">
                   <HiOutlineUserGroup />
-                  <span>External</span>
+                  <span>External public</span>
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href="/share/internal-single" className="flex items-center space-x-1">
+                <Link href="/share/external-protected" className="flex items-center space-x-1 w-full">
+                  <MdSecurity />
+                  <span>External protected</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/share/internal-single/sender" className="flex items-center space-x-1">
                   <RiUserShared2Line />
-                  <span>Internal single</span>
+                  <span>Internal single (sender)</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/share/internal-single/receiver" className="flex items-center space-x-1">
+                  <RiUserReceived2Line />
+                  <span>Internal single (receiver)</span>
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
