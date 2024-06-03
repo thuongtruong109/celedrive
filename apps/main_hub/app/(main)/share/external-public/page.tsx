@@ -69,7 +69,7 @@ const ShareExternalPublicPage: React.FC = () => {
   }
 
   return (
-    <div className='container flex flex-col items-center space-y-8'>
+    <div className='flex flex-col items-center space-y-8'>
       <h2 className="text-xl font-semibold">Upload and share the download link.</h2>
 
       <Button onClick={onUploadClick}>

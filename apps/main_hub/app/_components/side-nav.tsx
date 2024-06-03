@@ -73,7 +73,7 @@ export function SideNav() {
     <nav className="flex flex-col space-y-2 divide-y divide-slate-300/50">
       {
         menu.map((items, index) => (
-          <ul key={index} className="max-w-60 w-max flex flex-col space-y-2">
+          <ul key={index} className="max-w-60 min-w-max w-full flex flex-col space-y-2">
             {items.map((item) => (
               <li key={item.label} title={item.label}>
                 <Link href={item.href} className={clsx("flex items-center w-full hover:bg-blue-100 px-2.5 py-2 rounded-md font-normal", {"text-blue-500 bg-blue-100 font-medium": pathname.includes(item.href)})}>
