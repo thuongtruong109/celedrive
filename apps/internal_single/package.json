@@ -1,8 +1,8 @@
 {
-  "name": "fsshare",
+  "name": "@celedrive/internal_single",
   "version": "1.0.0",
-  "description": "",
-  "author": "",
+  "description": "single internal sharing service of celedrive",
+  "author": "Tran Nguyen Thuong Truong",
   "license": "ISC",
   "main": "index.js",
   "scripts": {

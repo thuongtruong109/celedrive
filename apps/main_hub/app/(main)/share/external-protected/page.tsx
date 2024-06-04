@@ -463,13 +463,13 @@ const ShareExternalProtectedPage = () => {
 
             <DropzoneDialog
               maxWidth="xs"
-              acceptedFiles={['*/*']}
+              // acceptedFiles={['*/*']}
               cancelButtonText={"cancel"}
               submitButtonText={"submit"}
               maxFileSize={100000000}
               open={open}
-              filesLimit={1}
-              onDrop={(e)=>{setOpen(false);}}
+              // filesLimit={1}
+              // onDrop={(e)=>{setOpen(false)}}
               onClose={() => setOpen(false)}
               onSave={(files) => {
                 if (files[0].size > 100000000) {
@@ -510,7 +510,7 @@ const ShareExternalProtectedPage = () => {
                 onChange={handleOTPChange}
                 shouldAutoFocus={true}
                 numInputs={5}
-                inputType="number"
+                inputType="text"
                 inputStyle={{
                   width: "2.5rem",
                   height: "2.5rem",
@@ -519,7 +519,6 @@ const ShareExternalProtectedPage = () => {
                   fontWeight: "bold",
                   borderRadius: 4,
                   outline: "none",
-                  pointerEvents: "none",
                   border: "1px solid rgba(0,0,0,0.3)",
                 }}
                 renderInput={(props) => <input {...props} />}

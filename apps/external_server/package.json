@@ -1,11 +1,12 @@
 {
-  "name": "server",
+  "name": "@celedrive/external_server",
   "version": "1.0.0",
-  "description": "",
+  "description": "server for external sharing service of celedrive webapp",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
