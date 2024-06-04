@@ -28,13 +28,9 @@ import {
 } from "firebase/storage";
 import toast, { Toaster } from "react-hot-toast";
 import { ThreeDots } from "react-loader-spinner";
-import JSZip from "jszip";
-import { getFunctions, httpsCallable } from "firebase/functions";
 import { useRouter } from "next/navigation";
 import { storage } from "@/lib/firebase";
 import { Button } from "@/_components/ui/button";
-import download from "js-file-download";
-
 
 const ShareExternalProtectedPage = () => {
   const router = useRouter();
@@ -59,15 +55,13 @@ const ShareExternalProtectedPage = () => {
     setFile(files);
     console.log(files);
     if (files.length > 1) {
-      const zip = new JSZip();
       const promises: Promise<void>[] = [];
       files.forEach((file, index) => {
         const fileReader = new FileReader();
         const promise = new Promise<void>((resolve, reject) => {
           fileReader.onload = () => {
-            const data = fileReader.result as ArrayBuffer | string;
+            // const data = fileReader.result as ArrayBuffer | string;
             console.log(files[index].name);
-            zip.file(files[index].name, data);
             resolve();
           };
           fileReader.onerror = (error) => {
@@ -80,13 +74,12 @@ const ShareExternalProtectedPage = () => {
 
       Promise.all(promises)
         .then(() => {
-          var filename= files[0].path + ".zip"; //files[0].name 
-          zip.generateAsync({ type: "blob" }).then((content) => {
+          let filename= files[0].path //files[0].name 
             const storageRef = dbstorageref(
               storage,
-              "images/" + filename
+              "images/" + filename,
             );
-            const uploadTask = uploadBytesResumable(storageRef, content);
+            const uploadTask = uploadBytesResumable(storageRef, files[0]);
 
             uploadTask.on(
               "state_changed",
@@ -128,7 +121,6 @@ const ShareExternalProtectedPage = () => {
                   });
               }
             );
-          });
         })
         .catch((error) => {
           console.error("Error creating the zip:", error);
@@ -155,7 +147,7 @@ const ShareExternalProtectedPage = () => {
             .then((url) => {
               setDownloadUrl(url);
               console.log("File uploaded successfully");
-              console.log("Download URL:", url);
+              console.log("Upload URL:", url);
               generateUniqueNumber()
                 .then((uniqueNumber) => {
                   console.log("Unique Number:", uniqueNumber);
@@ -338,34 +330,43 @@ const ShareExternalProtectedPage = () => {
       );
     });
   };
-  
 
-  const downloadAndDeleteFile = async (downloadUrl: string, otp: number, filename: string) => {
-    // let hiddenAnchor = document.createElement('a');
-    // hiddenAnchor.setAttribute('href', downloadUrl);
-    // hiddenAnchor.setAttribute('download', filename);
-    // hiddenAnchor.href = downloadUrl;
-    // hiddenAnchor.download = filename;
-    // hiddenAnchor.style.display = 'none';
-    // document.body.appendChild(hiddenAnchor);
-    // hiddenAnchor.click();
-    // document.body.removeChild(hiddenAnchor);
+  const downloadAndDeleteFile = async (downloadUrl: string, _otp: number, filename: string) => {
+    // cors-guild.txt for cors issue
 
-    download(downloadUrl, filename);
-
-    // https://medium.com/@we.viavek/setting-cors-in-firebase-19a2cce2fe28
-      
-    console.log("Downloading:", downloadUrl);
+    const anchor = document.createElement('a');
+    anchor.style.display = 'none';
+    anchor.target = '_blank';
+    anchor.href = downloadUrl;
+    anchor.download = filename;
+    document.body.appendChild(anchor);
+    anchor.click();
+    URL.revokeObjectURL(anchor.href);
+    document.body.removeChild(anchor);
     
-    // const filePath = "images/"+filename;
+    // fetch(downloadUrl, {
+    //   mode : 'no-cors',
+    //   method: 'get',
+    //   headers: {
+    //     'Access-Control-Allow-Origin' : '*',
+    //     'mode':'cors',
+    //   },
+    // })
+    // .then(response => response.blob())
+    // .then(blob => {
+    //   let blobUrl = window.URL.createObjectURL(blob);
+    //   let a = document.createElement('a');
+    //   a.download = filename;
+    //   a.href = blobUrl;
+    //   document.body.appendChild(a);
+    //   a.click();
+    //   a.remove();
+    // })
+    // .catch((error) => {
+    //   console.error("Error downloading the file:", error);
+    // });
 
-    // const functions = getFunctions();
-    //         const deleteFile = httpsCallable(functions, "Deletion");
-    //         const response = await deleteFile({
-    //             url: filePath,
-    //             unique: otp,
-    //         });
-    //         console.log(response);
+    setshowdownloadloader(false);
   };
 
   const shareNewFile = () => {
@@ -397,7 +398,6 @@ const ShareExternalProtectedPage = () => {
       <div className="relative flex flex-col items-center space-y-12 w-full h-full">
           <Toaster />
           <div className="w-96 h-60 flex flex-col items-center justify-center bg-white rounded-md shadow-md">
-            {/* {showUniqueID && <h1>Unique ID</h1>} */}
             <div className="flex justify-center items-center h-screen">
               {showshareButton && (
                 <Button
@@ -465,13 +465,13 @@ const ShareExternalProtectedPage = () => {
 
             <DropzoneDialog
               maxWidth="xs"
-              // acceptedFiles={['*/*']}
+              acceptedFiles={['*/*']}
               cancelButtonText={"cancel"}
               submitButtonText={"submit"}
               maxFileSize={100000000}
               open={open}
-              // filesLimit={1}
-              // onDrop={(event)=>{setOpen(false);}}
+              filesLimit={1}
+              onDrop={(e)=>{setOpen(false);}}
               onClose={() => setOpen(false)}
               onSave={(files) => {
                 if (files[0].size > 100000000) {
@@ -541,7 +541,7 @@ const ShareExternalProtectedPage = () => {
                     visible={true}
                   />
                 ) : (
-                  <div onClick={handleDownload} className="flex items-center space-x-1">
+                  <div onClick={handleDownload} className="flex items-center space-x-1">                  
                     <MdDownload />
                     <span>Download</span>
                   </div>

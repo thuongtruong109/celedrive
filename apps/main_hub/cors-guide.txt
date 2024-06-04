@@ -1,0 +1,2 @@
+https://cloud.google.com/storage/docs/gsutil_install
+https://medium.com/@we.viavek/setting-cors-in-firebase-19a2cce2fe28

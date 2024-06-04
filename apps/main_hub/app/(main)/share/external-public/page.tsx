@@ -83,8 +83,8 @@ const ShareExternalPublicPage: React.FC = () => {
         onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
       />
 
-      <div className="flex items-center space-x-2">
-        <a href={result} target="_blank" rel="noreferrer" className="hover">{result}</a>
+      <div className="flex flex-col items-center space-y-2 mt-10 border border-dotted border-blue-300 p-4 rounded-lg">
+        <a href={result} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">{result}</a>
         { result != '' && <Button variant="outline" onClick={() => copyLink(result)}>
           { isCopied ? <MdDone /> : <PiCopySimpleThin /> }
             <span>Copy</span>
