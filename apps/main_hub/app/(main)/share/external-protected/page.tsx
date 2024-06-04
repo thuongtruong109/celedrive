@@ -74,7 +74,7 @@ const ShareExternalProtectedPage = () => {
 
       Promise.all(promises)
         .then(() => {
-          let filename= files[0].path //files[0].name 
+          let filename= files[0].name //files[0].name 
             const storageRef = dbstorageref(
               storage,
               "images/" + filename,
@@ -126,9 +126,9 @@ const ShareExternalProtectedPage = () => {
           console.error("Error creating the zip:", error);
         });
     } else {
-      const filename = files[0].path; //files[0].name
+      const filename = files[0].name; //files[0].name
       console.log(filename);
-      const storageRef = dbstorageref(storage, "images/" + files[0].path); //files[0].name
+      const storageRef = dbstorageref(storage, "images/" + files[0].name); //files[0].name
       const uploadTask = uploadBytesResumable(storageRef, files[0]);
 
       uploadTask.on(
@@ -313,12 +313,10 @@ const ShareExternalProtectedPage = () => {
         (snapshot) => {
           const data = snapshot.val();
           if (data) {
-            // Retrieve the first entry with the matching OTP
-            const entry = Object.values(data)[0];
-            // Resolve with an object containing both url and filename
+            const entry = Object.values(data)[0] as { url: string; filename: string };
             resolve({
               url: entry.url,
-              filename: entry.filename || "Unknown Filename", // If the filename is not available, use a default value
+              filename: entry.filename
             });
           } else {
             reject(new Error("No download URL found for the given OTP."));
@@ -424,10 +422,9 @@ const ShareExternalProtectedPage = () => {
               {showUniqueID && (
                 <div>
                   <OTPInput
-                    value={showshareUniqueID}
+                    value={showshareUniqueID.toString()}
                     numInputs={5}
-                    otpType="number"
-                    disabled={true}
+                    inputType="number"
                     shouldAutoFocus={false}
                     inputStyle={{
                       width: "2.5rem",
@@ -437,10 +434,11 @@ const ShareExternalProtectedPage = () => {
                       fontWeight: "bold",
                       borderRadius: 4,
                       outline: "none",
+                      pointerEvents: "none",
                       border: "1px solid rgba(0,0,0,0.3)",
                     }}
+                    onChange={(otp) => {}}
                     renderInput={(props) => <input {...props} />}
-                    secure
                   />
                   <div className="flex justify-center items-center space-x-4 mt-4">
                     <Button
@@ -510,11 +508,9 @@ const ShareExternalProtectedPage = () => {
               <OTPInput
                 value={OTP}
                 onChange={handleOTPChange}
-                autoFocus
-                OTPLength={5}
+                shouldAutoFocus={true}
                 numInputs={5}
-                otpType="number"
-                disabled={false}
+                inputType="number"
                 inputStyle={{
                   width: "2.5rem",
                   height: "2.5rem",
@@ -523,10 +519,10 @@ const ShareExternalProtectedPage = () => {
                   fontWeight: "bold",
                   borderRadius: 4,
                   outline: "none",
+                  pointerEvents: "none",
                   border: "1px solid rgba(0,0,0,0.3)",
                 }}
                 renderInput={(props) => <input {...props} />}
-                secure
               />
               <Button className="bg-blue-500 hover:bg-blue-600">
                 {showdownloadloader ? (
@@ -536,8 +532,6 @@ const ShareExternalProtectedPage = () => {
                     radius="9"
                     color="#FFFFFF"
                     ariaLabel="three-dots-loading"
-                    wrapperStyle={{}}
-                    wrapperClassName=""
                     visible={true}
                   />
                 ) : (
