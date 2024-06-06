@@ -37,16 +37,16 @@ services:
   #     - my_network
   #   restart: always
     
-  # internal_single:
-  #   container_name: internal_single
-  #   build:
-  #     context: ./apps/internal_single
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "5000:5000"
-  #   networks:
-  #     - my_network
-  #   restart: always
+  internal_single:
+    container_name: internal_single
+    build:
+      context: ./apps/internal_single
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - my_network
+    restart: always
 
   # main_hub:
   #   container_name: main_hub
