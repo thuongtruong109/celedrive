@@ -1,6 +1,14 @@
 version: '3'
 
 services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - my_network
+    restart: always
+  
   external_server:
     container_name: external_server
     build:
@@ -8,46 +16,52 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    networks:
-      - my_network
-    restart: always
-
-  internal_multi:
-    container_name: internal_multi
-    build:
-      context: ./apps/internal_multi
-      dockerfile: Dockerfile
-    ports:
-      - "3002:3002"
-    networks:
-      - my_network
-    restart: always
-    
-  internal_single:
-    container_name: internal_single
-    build:
-      context: ./apps/internal_single
-      dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
-    networks:
-      - my_network
-    restart: always
-
-  main_hub:
-    container_name: main_hub
-    build:
-      context: ./apps/main_hub
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
+    env_file:
+      - ./apps/external_server/.env
     depends_on:
-      - external_server
-      - internal_multi
-      - internal_single
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
     networks:
       - my_network
     restart: always
+
+  # internal_multi:
+  #   container_name: internal_multi
+  #   build:
+  #     context: ./apps/internal_multi
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3002:3002"
+  #   networks:
+  #     - my_network
+  #   restart: always
+    
+  # internal_single:
+  #   container_name: internal_single
+  #   build:
+  #     context: ./apps/internal_single
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "5000:5000"
+  #   networks:
+  #     - my_network
+  #   restart: always
+
+  # main_hub:
+  #   container_name: main_hub
+  #   build:
+  #     context: ./apps/main_hub
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - external_server
+  #     - internal_multi
+  #     - internal_single
+  #   networks:
+  #     - my_network
+  #   restart: always
 
 networks:
   my_network:
