@@ -28,6 +28,7 @@
   "scripts": {
     "deploy": "react-scripts build && gh-pages -d build",
     "start:linux": "PORT=3002 react-scripts start",
+    "start:dev": "export PORT=3002 react-scripts start",
     "start": "set PORT=3002 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
