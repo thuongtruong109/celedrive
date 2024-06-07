@@ -6,6 +6,7 @@ import {startPeer, stopPeerSession} from "./store/peer/peerActions";
 import * as connectionAction from "./store/connection/connectionActions"
 import {DataType, PeerConnection} from "./helpers/peer";
 import {useAsyncState} from "./helpers/hooks";
+import { QRCodeCanvas } from 'qrcode.react'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -113,18 +114,24 @@ export const App: React.FC = () => {
                                 <Button danger onClick={handleStopSession}>Stop</Button>
                             </Space>
                             {
-                                peer.id && <Space direction="horizontal">
-                                    <div>
-                                        <span>or via link: </span>
-                                        <a href={connectLink(peer.id)} target='_blank' rel="noreferrer">
-                                            {connectLink(peer.id)}
-                                        </a>
-                                    </div>
-                                    <Button icon={<CopyOutlined/>} onClick={async () => {
-                                        await navigator.clipboard.writeText(connectLink(peer.id || ""))
-                                        message.info("Copied share link")
-                                    }}/>
-                                </Space>
+                                peer.id && <>
+                                    <Space direction="horizontal">
+                                        <div>
+                                            <span>or via link: </span>
+                                            <a href={connectLink(peer.id)} target='_blank' rel="noreferrer">
+                                                {connectLink(peer.id)}
+                                            </a>
+                                        </div>
+                                        <Button icon={<CopyOutlined/>} onClick={async () => {
+                                            await navigator.clipboard.writeText(connectLink(peer.id || ""))
+                                            message.info("Copied share link")
+                                        }}/>
+                                    </Space>
+                                    <Space direction="vertical">
+                                        <span>or scan QR code below: </span>
+                                        <QRCodeCanvas size={100} value={connectLink(peer.id)} />
+                                    </Space>
+                                </>
                             }
                         </Space>
                     </Card>
