@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/celedrive/static/js/main.baf8b697.js",
+    "main.js": "/celedrive/static/js/main.8e06b106.js",
     "static/js/787.e16eaf74.chunk.js": "/celedrive/static/js/787.e16eaf74.chunk.js",
     "index.html": "/celedrive/index.html",
-    "main.baf8b697.js.map": "/celedrive/static/js/main.baf8b697.js.map",
+    "main.8e06b106.js.map": "/celedrive/static/js/main.8e06b106.js.map",
     "787.e16eaf74.chunk.js.map": "/celedrive/static/js/787.e16eaf74.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.baf8b697.js"
+    "static/js/main.8e06b106.js"
   ]
 }
