@@ -6,10 +6,10 @@ import (
 	"github.com/gin-gonic/gin"
     "fmt"
     "sync/atomic"
+    "os"
 )
 
-
-var urls = []string{"https://celedrive.vercel.app/", "https://celedrive-2.vercel.app/"}
+var urls = []string{os.Getenv("APP_1"), os.Getenv("APP_2")}
 var counter uint64
 
 func handleRequest(ctx *gin.Context) {

@@ -10,6 +10,7 @@ services:
     restart: always
   
   external_server:
+    image: thuongtruong1009/celedrive-external_server
     container_name: external_server
     build:
       context: ./apps/external_server
@@ -27,6 +28,7 @@ services:
     restart: always
 
   internal_multi:
+    image: thuongtruong1009/celedrive-internal_multi
     container_name: internal_multi
     build:
       context: ./apps/internal_multi
@@ -38,6 +40,7 @@ services:
     restart: always
     
   internal_single:
+    image: thuongtruong1009/celedrive-internal_single
     container_name: internal_single
     build:
       context: ./apps/internal_single
@@ -49,12 +52,14 @@ services:
     restart: always
 
   main_hub:
+    image: thuongtruong1009/celedrive-main_hub
     container_name: main_hub
     build:
       context: ./apps/main_hub
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+      - "3001:3000"
     env_file:
       - ./apps/main_hub/.env
     environment:
@@ -65,6 +70,25 @@ services:
       - external_server
       - internal_multi
       - internal_single
+    networks:
+      - my_network
+    restart: always
+
+  proxy:
+    image: thuongtruong1009/celedrive-proxy
+    container_name: proxy
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    env_file:
+      - ./proxy/.env
+    environment:
+      - APP_1=http://localhost:3000/
+      - APP_2=http://localhost:3001/
+    ports:
+      - "3333:3333"
+    depends_on:
+      - main_hub
     networks:
       - my_network
     restart: always
