@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Button, Card, Col, Input, Menu, MenuProps, message, Row, Space, Upload, UploadFile} from "antd";
 import {CopyOutlined, UploadOutlined} from "@ant-design/icons";
 import {useAppDispatch, useAppSelector} from "./store/hooks";
@@ -26,7 +26,6 @@ function getItem(
 }
 
 export const App: React.FC = () => {
-
     const peer = useAppSelector((state) => state.peer)
     const connection = useAppSelector((state) => state.connection)
     const dispatch = useAppDispatch()
@@ -76,6 +75,26 @@ export const App: React.FC = () => {
         }
     }
 
+    const connectLink = (peerId: string): string => {
+        let fullUrl = window.location.href
+        if (fullUrl.includes("?id=")) {
+            fullUrl = fullUrl.split("?id=")[0]
+        }
+        return fullUrl + "?id=" + peerId
+    }
+
+    useEffect(() => {
+        let url = window.location.search;
+        const urlParams = new URLSearchParams(url);
+        const idValues = urlParams.getAll('id');
+        const id = idValues[0];
+        
+        if (id && peer.started) {
+            message.info("ID: " + id)
+            dispatch(connectionAction.connectPeer(id))
+        }
+    }, [peer.started, dispatch])
+
     return (
         <Row justify={"center"} align={"top"}>
             <Col xs={24} sm={24} md={20} lg={16} xl={12}>
@@ -84,13 +103,29 @@ export const App: React.FC = () => {
                         <Button onClick={handleStartSession} loading={peer.loading}>Start</Button>
                     </Card>
                     <Card hidden={!peer.started}>
-                        <Space direction="horizontal">
-                            <div>ID: {peer.id}</div>
-                            <Button icon={<CopyOutlined/>} onClick={async () => {
-                                await navigator.clipboard.writeText(peer.id || "")
-                                message.info("Copied: " + peer.id)
-                            }}/>
-                            <Button danger onClick={handleStopSession}>Stop</Button>
+                        <Space direction="vertical">
+                            <Space direction="horizontal">
+                                <div>ID: {peer.id}</div>
+                                <Button icon={<CopyOutlined/>} onClick={async () => {
+                                    await navigator.clipboard.writeText(peer.id || "")
+                                    message.info("Copied: " + peer.id)
+                                }}/>
+                                <Button danger onClick={handleStopSession}>Stop</Button>
+                            </Space>
+                            {
+                                peer.id && <Space direction="horizontal">
+                                    <div>
+                                        <span>or via link: </span>
+                                        <a href={connectLink(peer.id)} target='_blank' rel="noreferrer">
+                                            {connectLink(peer.id)}
+                                        </a>
+                                    </div>
+                                    <Button icon={<CopyOutlined/>} onClick={async () => {
+                                        await navigator.clipboard.writeText(connectLink(peer.id || ""))
+                                        message.info("Copied share link")
+                                    }}/>
+                                </Space>
+                            }
                         </Space>
                     </Card>
                     <div hidden={!peer.started}>
