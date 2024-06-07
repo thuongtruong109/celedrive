@@ -5,13 +5,21 @@ import (
 	"net/http"
 	"github.com/gin-gonic/gin"
     "fmt"
+    "sync/atomic"
 )
+
+
+var urls = []string{"https://celedrive.vercel.app/", "https://celedrive-2.vercel.app/"}
+var counter uint64
 
 func handleRequest(ctx *gin.Context) {
 	path := ctx.Param("path")
-    fmt.Println(path[1:])
 
-	requestedURL := "https://celedrive.vercel.app/" + path[1:]
+    // Use atomic operation to safely increment the counter in concurrent environment
+    index := atomic.AddUint64(&counter, 1) % uint64(len(urls))
+    requestedURL := urls[index] + path[1:]
+
+    fmt.Println("Requested URL: ", requestedURL)
 
 	req, _ := http.NewRequest(ctx.Request.Method, requestedURL, ctx.Request.Body)
 
@@ -59,5 +67,5 @@ func main() {
 	router.OPTIONS("*path", handleRequest)
 	router.HEAD("*path", handleRequest)
 
-	router.Run(":5000")
+	router.Run(":3333")
 }
