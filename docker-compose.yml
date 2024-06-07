@@ -1,16 +1,30 @@
 version: '3'
 
 services:
-  external_server:
-    container_name: external_server
-    build:
-      context: ./apps/external_server
-      dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
-    networks:
-      - my_network
-    restart: always
+  # mongo:
+  #   image: mongo
+  #   ports:
+  #     - "27017:27017"
+  #   networks:
+  #     - my_network
+  #   restart: always
+  
+  # external_server:
+  #   container_name: external_server
+  #   build:
+  #     context: ./apps/external_server
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8000:8000"
+  #   env_file:
+  #     - ./apps/external_server/.env
+  #   depends_on:
+  #     - mongo
+  #   environment:
+  #     - MONGO_URI=mongodb://mongo:27017
+  #   networks:
+  #     - my_network
+  #   restart: always
 
   internal_multi:
     container_name: internal_multi
@@ -23,31 +37,37 @@ services:
       - my_network
     restart: always
     
-  internal_single:
-    container_name: internal_single
-    build:
-      context: ./apps/internal_single
-      dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
-    networks:
-      - my_network
-    restart: always
+  # internal_single:
+  #   container_name: internal_single
+  #   build:
+  #     context: ./apps/internal_single
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "5000:5000"
+  #   networks:
+  #     - my_network
+  #   restart: always
 
-  main_hub:
-    container_name: main_hub
-    build:
-      context: ./apps/main_hub
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    depends_on:
-      - external_server
-      - internal_multi
-      - internal_single
-    networks:
-      - my_network
-    restart: always
+  # main_hub:
+  #   container_name: main_hub
+  #   build:
+  #     context: ./apps/main_hub
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   env_file:
+  #     - ./apps/main_hub/.env
+  #   environment:
+  #     - NEXT_PUBLIC_SHARE_EXTERNAL_API_URI=http://localhost:8000
+  #     - NEXT_PUBLIC_SHARE_INTERNAL_SINGLE_EMBED_URI=http://localhost:5000
+  #     - NEXT_PUBLIC_SHARE_INTERNAL_MULTI_EMBED_URI=http://localhost:3002
+  #   depends_on:
+  #     - external_server
+  #     - internal_multi
+  #     - internal_single
+  #   networks:
+  #     - my_network
+  #   restart: always
 
 networks:
   my_network:

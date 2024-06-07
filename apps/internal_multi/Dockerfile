@@ -1,17 +1,17 @@
-FROM node:alpine
+FROM node:18-alpine
 
-WORKDIR /app
+WORKDIR /home/node/app
 
-COPY ./package*.json ./
+COPY ./package.json ./yarn.lock ./
 
-RUN yarn
-
-COPY ./ ./
-
-RUN yarn build
-
-EXPOSE 3002
+RUN chown -R node:node /home/node/app
 
 USER node
 
-CMD [ "yarn", "start" ]
+RUN yarn
+
+COPY --chown=node:node . .
+
+EXPOSE 3002
+
+CMD [ "yarn", "start:linux" ]
