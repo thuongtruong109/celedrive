@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Button, Card, Col, Input, Menu, MenuProps, message, Row, Space, Upload, UploadFile} from "antd";
-import {CopyOutlined, UploadOutlined} from "@ant-design/icons";
+import {CloudUploadOutlined, LinkOutlined, UploadOutlined} from "@ant-design/icons";
 import {useAppDispatch, useAppSelector} from "./store/hooks";
 import {startPeer, stopPeerSession} from "./store/peer/peerActions";
 import * as connectionAction from "./store/connection/connectionActions"
 import {DataType, PeerConnection} from "./helpers/peer";
 import {useAsyncState} from "./helpers/hooks";
+import SharedConnect from "./components/ShareConnect";
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -26,7 +27,6 @@ function getItem(
 }
 
 export const App: React.FC = () => {
-
     const peer = useAppSelector((state) => state.peer)
     const connection = useAppSelector((state) => state.connection)
     const dispatch = useAppDispatch()
@@ -76,6 +76,18 @@ export const App: React.FC = () => {
         }
     }
 
+    useEffect(() => {
+        let url = window.location.search;
+        const urlParams = new URLSearchParams(url);
+        const idValues = urlParams.getAll('id');
+        const id = idValues[0];
+        
+        if (id && peer.started) {
+            message.info("ID: " + id)
+            dispatch(connectionAction.connectPeer(id))
+        }
+    }, [peer.started, dispatch])
+
     return (
         <Row justify={"center"} align={"top"}>
             <Col xs={24} sm={24} md={20} lg={16} xl={12}>
@@ -84,14 +96,9 @@ export const App: React.FC = () => {
                         <Button onClick={handleStartSession} loading={peer.loading}>Start</Button>
                     </Card>
                     <Card hidden={!peer.started}>
-                        <Space direction="horizontal">
-                            <div>ID: {peer.id}</div>
-                            <Button icon={<CopyOutlined/>} onClick={async () => {
-                                await navigator.clipboard.writeText(peer.id || "")
-                                message.info("Copied: " + peer.id)
-                            }}/>
-                            <Button danger onClick={handleStopSession}>Stop</Button>
-                        </Space>
+                        {
+                            peer.id && <SharedConnect peerId={peer.id} handleStopSession={handleStopSession}/>
+                        }
                     </Card>
                     <div hidden={!peer.started}>
                         <Space direction="vertical" style={{ width: '100%'}}>
@@ -105,8 +112,11 @@ export const App: React.FC = () => {
                                             loading={connection.loading}>Connect</Button>
                                 </Space>
                             </Card>
-
-                            <Card title="Connection">
+                            <Card title={<Space direction="horizontal">
+                                            <LinkOutlined />
+                                            <span>Connection</span>
+                                        </Space>
+                                }>
                                 {
                                     connection.list.length === 0
                                         ? <div>Waiting for connection ...</div>
@@ -117,9 +127,12 @@ export const App: React.FC = () => {
                                                     items={connection.list.map(e => getItem(e, e, null))}/>
                                         </div>
                                 }
-
                             </Card>
-                            <Card title="Send File">
+                            <Card title={<Space direction="horizontal">
+                                            <CloudUploadOutlined />
+                                            <span>Send File</span>
+                                        </Space>
+                                }>
                                 <Space style={{ display: 'flex', alignItems: 'flex-start' }}>
                                     <Upload fileList={fileList}
                                             maxCount={1}

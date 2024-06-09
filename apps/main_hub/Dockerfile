@@ -1,17 +1,19 @@
-FROM node:alpine
+FROM node:alpine as builder
 
-WORKDIR /usr/app
+WORKDIR /home/node/app
 
 COPY ./package*.json ./
 
-RUN npm install -f --production
+RUN chown -R node:node /home/node/app
 
-COPY ./ ./
+USER node
+
+RUN npm install -f
+
+COPY --chown=node:node . .
 
 RUN npm run build
 
 EXPOSE 3000
 
-USER node
-
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "start" ]
