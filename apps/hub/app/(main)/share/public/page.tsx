@@ -14,7 +14,7 @@ interface UploadResponse {
 
 const uploadFile = async (data: FormData) => {
   try {
-    const response = await axios.post<UploadResponse>(`${process.env.NEXT_PUBLIC_SHARE_EXTERNAL_API_URI}/upload`, data);
+    const response = await axios.post<UploadResponse>(`${process.env.NEXT_PUBLIC_SHARE_PUBLIC_API_URI}/upload`, data);
     return response.data;
   } catch (error: unknown) {
     if (error instanceof Error) console.log('Error while calling the API ', error.message);
@@ -22,7 +22,7 @@ const uploadFile = async (data: FormData) => {
   }
 }
 
-const ShareExternalPublicPage: React.FC = () => {
+const SharePublicPage: React.FC = () => {
   const { toast } = useToast();
   
   const [file, setFile] = useState<File | null>(null);
@@ -39,7 +39,7 @@ const ShareExternalPublicPage: React.FC = () => {
 
         const response = await uploadFile(data);
         if (response) {
-          setResult(`${process.env.NEXT_PUBLIC_SHARE_EXTERNAL_API_URI}/file/${response.id}`);
+          setResult(`${process.env.NEXT_PUBLIC_SHARE_PUBLIC_API_URI}/file/${response.id}`);
           toast({
             variant: "success",
             title: "File Uploaded",
@@ -97,4 +97,4 @@ const ShareExternalPublicPage: React.FC = () => {
   );
 }
 
-export default ShareExternalPublicPage;
+export default SharePublicPage;

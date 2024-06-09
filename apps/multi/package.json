@@ -30,7 +30,7 @@
     "vite": "^4.5.3"
   },
   "scripts": {
-    "dev": "vite --port 3003",
+    "dev": "vite",
     "start:dev": "yarn build && concurrently \"yarn peerjs --port 9000\" \"yarn start\"",
     "start": "yarn serve -s dist/",
     "build": "tsc && vite build",

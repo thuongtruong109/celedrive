@@ -32,7 +32,7 @@ import { useRouter } from "next/navigation";
 import { storage } from "@/lib/firebase";
 import { Button } from "@/_components/ui/button";
 
-const ShareExternalProtectedPage = () => {
+const ShareProtectedPage = () => {
   const router = useRouter();
   const [OTP, setOTP] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
@@ -546,4 +546,4 @@ const ShareExternalProtectedPage = () => {
   );
 }
 
-export default ShareExternalProtectedPage
+export default ShareProtectedPage
