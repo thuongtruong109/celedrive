@@ -395,7 +395,7 @@ const ShareExternalProtectedPage = () => {
   return (
       <div className="relative flex flex-col items-center space-y-12 w-full h-full">
           <Toaster />
-          <div className="w-96 h-60 flex flex-col items-center justify-center bg-white rounded-md shadow-md">
+          <div className="w-96 h-60 flex flex-col items-center justify-center border rounded-md">
             <div className="flex justify-center items-center h-screen">
               {showshareButton && (
                 <Button

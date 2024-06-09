@@ -1,5 +1,5 @@
 {
-  "name": "@celedrive/main_hub",
+  "name": "@celedrive/hub",
   "desc": "main hub dashboard data store for celedrive",
   "author": "Tran Nguyen Thuong Truong",
   "version": "0.1.0",

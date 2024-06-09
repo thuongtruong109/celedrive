@@ -1,7 +1,7 @@
 {
-  "name": "@celedrive/external_server",
+  "name": "@celedrive/public_server",
   "version": "1.0.0",
-  "description": "server for external sharing service of celedrive webapp",
+  "description": "server for public sharing service of celedrive webapp",
   "main": "index.js",
   "type": "module",
   "scripts": {

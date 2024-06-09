@@ -32,7 +32,7 @@ const Header: FC = () => {
           <UserButton />
           <SignedOut>
             <SignInButton>
-              <Button variant={"outline"}>
+              <Button variant={"outline"} className="shadow-sm">
                 <MdOutlineFingerprint />
                 <span>Sign In</span>
               </Button>

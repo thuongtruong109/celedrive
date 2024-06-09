@@ -10,10 +10,9 @@ import {
   DropdownMenuTrigger,
 } from "@/_components/ui/dropdown-menu";
 import { Button } from "@/_components/ui/button";
-import { HiOutlineUserGroup } from "react-icons/hi2";
-import { RiUserShared2Line, RiStackshareLine, RiUserReceived2Line } from "react-icons/ri";
-import { MdSecurity } from "react-icons/md";
+
 import { GoQuestion } from "react-icons/go";
+import { SharedServices } from "./shared/services";
 
 export default function LandingPage() {
   return (
@@ -53,36 +52,16 @@ export default function LandingPage() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>
-                <Link href="/share/external-public" className="flex items-center space-x-1 w-full">
-                  <HiOutlineUserGroup />
-                  <span>External public</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/share/external-protected" className="flex items-center space-x-1 w-full">
-                  <MdSecurity />
-                  <span>External protected</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/share/internal-single/sender" className="flex items-center space-x-1">
-                  <RiUserShared2Line />
-                  <span>Internal single (sender)</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/share/internal-single/receiver" className="flex items-center space-x-1">
-                  <RiUserReceived2Line />
-                  <span>Internal single (receiver)</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/share/internal-multi" className="flex items-center space-x-1">
-                  <RiStackshareLine />
-                  <span>Internal multi</span>
-                </Link>
-              </DropdownMenuItem>
+              {
+                SharedServices.map((service) => (
+                  <DropdownMenuItem key={service.id}>
+                    <Link href={service.link} className="flex items-center space-x-1 w-full">
+                      <service.icon />
+                      <span>{ service.name }</span>
+                    </Link>
+                  </DropdownMenuItem>
+                ))
+              }
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

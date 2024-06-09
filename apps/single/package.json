@@ -1,5 +1,5 @@
 {
-  "name": "@celedrive/internal_single",
+  "name": "@celedrive/single",
   "version": "1.0.0",
   "description": "single internal sharing service of celedrive",
   "author": "Tran Nguyen Thuong Truong",
