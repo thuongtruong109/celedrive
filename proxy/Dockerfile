@@ -9,6 +9,7 @@ RUN go get -d -v ./...
 RUN go install -v ./...
 RUN go build -v -o go-app
 
-FROM alpine:3.11
+FROM alpine:3.11 as prod
 COPY --from=build go/src/app/ app/
+EXPOSE 3333
 CMD ["./app/go-app"]

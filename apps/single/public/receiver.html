@@ -1,0 +1,32 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Celedrive single sharing (receiver)</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <section class="app join_section">
+      <div class="screen join-screen active">
+        <div class="form">
+          <input type="text" id="join-id" />
+          <button id="paste-join-code-con-btn">📋Paste</button>
+          <button id="receiver-start-con-btn">⚡Connect</button>
+          <p id="aaa"></p>
+        </div>
+      </div>
+      <div class="screen fs-screen">
+        <div class="files-list">
+          <div class="title">Shared files</div>
+        </div>
+      </div>
+    </section>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js" integrity="sha512-luMnTJZ7oEchNDZAtQhgjomP1eZefnl82ruTH/3Oj/Yu5qYtwL7+dVRccACS/Snp1lFXq188XFipHKYE75IaQQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.1/download.min.js"
+    ></script>
+    <script type="text/javascript" src="receiver.js"></script>
+  </body>
+</html>
