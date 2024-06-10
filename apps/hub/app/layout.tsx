@@ -20,13 +20,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ConvexClientProvider>
-          <Toaster />
-          <Header />
-          <main className="container">{children}</main>
-          <Footer />
-        </ConvexClientProvider>
+      <body className={inter.className} suppressHydrationWarning={true}>
+          <ConvexClientProvider>
+            <Toaster />
+            <Header />
+            <main className="container">{children}</main>
+            <Footer />
+          </ConvexClientProvider>
       </body>
     </html>
   );

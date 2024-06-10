@@ -112,6 +112,9 @@ services:
       target: prod
     env_file:
       - ./proxy/.env
+    environment:
+      - APP_1=http://localhost:3001/
+      - APP_2=http://localhost:3003/
     ports:
       - "3333:3333"
     depends_on:
