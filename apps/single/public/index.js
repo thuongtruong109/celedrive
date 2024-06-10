@@ -55,6 +55,15 @@ document.querySelector('#file-input').addEventListener('change', function (e) {
   reader.readAsArrayBuffer(file)
 })
 
+document.querySelector('#copy_btn').addEventListener('click', function () {
+    let currentJoinID = document.querySelector('#join-id').innerText;
+    navigator.clipboard.writeText(currentJoinID)
+    this.innerText = 'Copied!'
+    setTimeout(() => {
+      this.innerText = '🔗Copy'
+    }, 2000)
+})
+
 function shareFile(metadata, buffer, progress_node) {
   socket.emit('file-meta', {
     uid: receiverID,

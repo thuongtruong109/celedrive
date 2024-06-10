@@ -16,7 +16,7 @@ const PeerList: React.FC<{
   }
   return (
     <section className="peer-list">
-      <h2>Peers</h2>
+      <h3>Peers</h3>
       <ul>
         {peers.map((peer) => {
           return (

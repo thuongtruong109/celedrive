@@ -126,9 +126,6 @@ const Peer: React.FC<{
   return (
     <div className="peer">
       <FontAwesomeIcon className="user-icon" icon={icon} />
-      {status === CONN_STATUSES.CONN_STATUS_OPEN && !start && (
-        <button onClick={handleStart}>Send</button>
-      )}
       {status === CONN_STATUSES.CONN_STATUS_OPEN && start && chunkNumber <= 0 && (
         <div>
           <div>Waiting for peer</div>
@@ -137,6 +134,11 @@ const Peer: React.FC<{
       )}
 
       <span className="peer-id">{ peer.connectionId.toString().replace("dc_", "") }</span>
+
+      {status === CONN_STATUSES.CONN_STATUS_OPEN && !start && (
+        <button onClick={handleStart}>Send</button>
+      )}
+
       {start && chunkNumber > 0 && (
         <div className="progress">
           <div className="progress-inner" style={{ width: `${progress}%` }} />

@@ -144,7 +144,7 @@ hr {
   justify-content: center;
   align-items: flex-end;
   font-size: 1rem;
-  margin: 50px auto;
+  margin: 0 auto;
 
   .file-icon {
     font-size: 1.2rem;
@@ -184,9 +184,15 @@ hr {
   .start_button {
     @include button($black, $yellow);
   }
+}
 
-  .cancel_btn {
-    @include button($black, $grey);
+.cancel_btn {
+  @include button($black, $grey);
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-left: 0.25rem;
   }
 }
 
@@ -195,7 +201,7 @@ hr {
 }
 
 .download-link {
-  margin: auto;
+  margin: 2rem 0;
 
   pre {
     background-color: $grey;
@@ -223,8 +229,6 @@ hr {
 }
 
 .peer-list {
-  margin-top: 100px;
-
   ul {
     display: flex;
     flex-flow: row wrap;
@@ -234,7 +238,6 @@ hr {
   }
 
   .peer {
-    margin: 2.5rem;
     display: flex;
     flex-flow: column;
     align-items: center;

@@ -22,8 +22,9 @@
 * **Sharing**: <br>
     ✅ Share public via link (pernament data, no password required) <br>
     ✅ Share protected via one-time key required (pernament data) <br>
-    ✅ Share real-time single (1-1) via one-time key required (temporary data) <br>
-    ✅ Share real-time multi (1-n) via link, qr code (temporary data) <br>
+    ✅ Share real-time single via one-time key required (temporary data) by TCP socket <br>
+    ✅ Share real-time group via link, qr code (temporary data) by P2P external <br>
+    ✅ Share real-time multi via link, qr code (temporary data) by P2P internal<br>
 <!-- * **Security**: <br>
     ✅ Password hashing <br>
     ✅ File encryption/decryption <br> -->
@@ -37,7 +38,7 @@
 - Husky + Lint-staged (pre-commit)
 - Commitlint (commit message)
 - GitHub Actions (CI/CD)
-- TypeScript (main storage, share public frontend, share protected, share multi)
+- TypeScript (main storage, share public frontend, share protected, share group, share multi)
 - Nodemon (share public server auto-restart)
 - Tailwind CSS + Radix-ui (main storage styling)
 - React Icons (main storage icons)
@@ -49,10 +50,14 @@
 - MongoDB (share public database)
 - Express - Node (share single backend)
 - Socket.io (share single backend)
-- React (share multi)
-- Peerjs (share multi)
-- Redux + Reduxjs Toolkit (share multi)
-- Ant Design (share multi)
+- React (share group, share multi)
+- Peerjs (share group, share multi)
+- Redux + Reduxjs Toolkit (share group)
+- Ant Design (share group)
+- WebRTC (share multi)
+- Peer (share multi)
+- Fortawesome + SCSS (share multi)
+- Vite + Serve (share multi)
 - Docker (containerization)
 - Gin gonic - Go (proxy server)
 - Vercel + Render + GitHub Pages (deployment)

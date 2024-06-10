@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import {
   faTrash,
+  faRotate
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FileUploader from './FileUploader'
@@ -34,19 +35,25 @@ const Uploader: React.FC = () => {
               <span className="file-extension">{extension}</span>
               <span className="file-size"> - {formatSize(file.size)}</span>
             </div>
-            <div className="btn_area">
-              {!start && (
-                <button
-                  className="start_button"
-                  onClick={handleStartWebrtcClient}
-                >
-                  Start sharing
-                </button>
-              )}
-              <button type="button" className={`cancel_btn ${start ? 'hidden' : ''}`} onClick={handleReset}>
-                <FontAwesomeIcon icon={faTrash} />
+            {start && (
+              <button type="button" className="cancel_btn" onClick={handleReset}>
+                  <FontAwesomeIcon icon={faRotate} />
+                  <span>Reset</span>
               </button>
-            </div>
+              )}
+            {!start && (
+              <div className="btn_area">
+                  <button
+                    className="start_button"
+                    onClick={handleStartWebrtcClient}
+                  >
+                    Start sharing
+                  </button>
+                  <button type="button" className="cancel_btn" onClick={handleReset}>
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+              </div>
+            )}
           </div>
         )}
         {start && file && <WebrtcClient file={file} />}

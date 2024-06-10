@@ -27,6 +27,16 @@
 		document.querySelector('.join-screen').classList.remove('active')
 		document.querySelector('.fs-screen').classList.add('active')
 	  })
+
+    async function paste(input) {
+        const text = await navigator.clipboard.readText();
+        input.value = text;
+    }
+
+    document.querySelector('#paste-join-code-con-btn').addEventListener('click', function () {
+        paste(inputVal);
+    })
+    
   
 	let fileShare = {}
   

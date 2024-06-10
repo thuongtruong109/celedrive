@@ -9,16 +9,16 @@ services:
       - my_network
     restart: always
   
-  external_server:
-    image: thuongtruong1009/celedrive-external_server
-    container_name: external_server
+  public_server:
+    image: thuongtruong1009/celedrive-public_server
+    container_name: public_server
     build:
-      context: ./apps/external_server
+      context: ./apps/public_server
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
     env_file:
-      - ./apps/external_server/.env
+      - ./apps/public_server/.env
     depends_on:
       - mongo
     environment:
@@ -27,11 +27,11 @@ services:
       - my_network
     restart: always
 
-  internal_multi:
-    image: thuongtruong1009/celedrive-internal_multi
-    container_name: internal_multi
+  group:
+    image: thuongtruong1009/celedrive-group
+    container_name: group
     build:
-      context: ./apps/internal_multi
+      context: ./apps/group
       dockerfile: Dockerfile
     ports:
       - "3002:3002"
@@ -39,11 +39,11 @@ services:
       - my_network
     restart: always
     
-  internal_single:
-    image: thuongtruong1009/celedrive-internal_single
-    container_name: internal_single
+  single:
+    image: thuongtruong1009/celedrive-single
+    container_name: single
     build:
-      context: ./apps/internal_single
+      context: ./apps/single
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
@@ -51,25 +51,54 @@ services:
       - my_network
     restart: always
 
-  main_hub:
-    image: thuongtruong1009/celedrive-main_hub
-    container_name: main_hub
+  peerjs:
+    container_name: peerjs
     build:
-      context: ./apps/main_hub
+      context: ./apps/multi
+    command: yarn peer
+    ports:
+      - '127.0.0.1:9000:9000'
+    networks:
+      - my_network
+    restart: always
+
+  multi:
+    image: thuongtruong1009/celedrive-multi
+    container_name: multi
+    build:
+      context: ./apps/multi
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
-      - "3001:3000"
+      - '127.0.0.1:3000:3000'
     env_file:
-      - ./apps/main_hub/.env
-    environment:
-      - NEXT_PUBLIC_SHARE_EXTERNAL_API_URI=http://localhost:8000
-      - NEXT_PUBLIC_SHARE_INTERNAL_SINGLE_EMBED_URI=http://localhost:5000
-      - NEXT_PUBLIC_SHARE_INTERNAL_MULTI_EMBED_URI=http://localhost:3002
+      - ./apps/multi/.env
     depends_on:
-      - external_server
-      - internal_multi
-      - internal_single
+      - peerjs
+    networks:
+      - my_network
+    restart: always
+
+  hub:
+    image: thuongtruong1009/celedrive-hub
+    container_name: hub
+    build:
+      context: ./apps/hub
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+      - "3003:3003"
+    env_file:
+      - ./apps/hub/.env
+    environment:
+      - NEXT_PUBLIC_SHARE_PUBLIC_API_URI=http://localhost:8000
+      - NEXT_PUBLIC_SHARE_SINGLE_EMBED_URI=http://localhost:5000
+      - NEXT_PUBLIC_SHARE_GROUP_EMBED_URI=http://localhost:3002
+      - NEXT_PUBLIC_SHARE_MULTI_EMBED_URI=http://localhost:3000
+    depends_on:
+      - public_server
+      - group
+      - single
+      - multi
     networks:
       - my_network
     restart: always
@@ -80,15 +109,13 @@ services:
     build:
       context: ./proxy
       dockerfile: Dockerfile
+      target: prod
     env_file:
       - ./proxy/.env
-    environment:
-      - APP_1=http://localhost:3000/
-      - APP_2=http://localhost:3001/
     ports:
       - "3333:3333"
     depends_on:
-      - main_hub
+      - hub
     networks:
       - my_network
     restart: always

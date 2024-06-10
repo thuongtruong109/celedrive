@@ -1,11 +1,15 @@
-FROM node:20
+FROM node:18-alpine
 
-WORKDIR /opt/ezshare/
+WORKDIR /app/
+
 COPY package.json .
+
 RUN yarn
+
 COPY . .
+
 RUN yarn build
 
 EXPOSE 3000
 
-CMD ["yarn", "serve", "-s", "dist/"]
+CMD ["yarn", "start"]
