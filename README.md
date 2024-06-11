@@ -28,9 +28,36 @@
 <!-- * **Security**: <br>
     ✅ Password hashing <br>
     ✅ File encryption/decryption <br> -->
+
 ## Architecture
 
 ![Architecture](/docs/architecture.png)
+
+## Services
+
+- **Main storage**:
+
+![Storage](/docs/sequence/hub_storage.png)
+
+- **Share public**:
+
+![Single sharing](/docs/sequence/single_share.png)
+
+- **Share protected**:
+
+![Group sharing](/docs/sequence/group_share.png)
+
+- **Share group**:
+
+![Multi sharing](/docs/sequence/multi_share.png)
+
+- **Share multi**:
+
+![Public sharing](/docs/sequence/public_share.png)
+
+- **Share single**:
+
+![Protected sharing](/docs/sequence/protected_share.png)
 
 ## Tech Stack
 
