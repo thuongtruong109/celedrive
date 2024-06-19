@@ -1,0 +1,10 @@
+Google Drive: lacks quick sharing feature, must create and log in to share
+Mega: blocks access when bandwidth limit is reached in 1 day, must create and log in to share
+Box.com: upload file size limit (250 MB), cannot set password for shared files
+Megafire: need to log in to account 1 time/year to avoid being locked, website contains many ads
+Wikisend: upload file size limit (100MB), storage time for guest mode 7 days
+Fshare: upload speed limit
+BitTorrent: complex interface for newbies, available files are not secure, speed depends on number of peers, consumes bandwidth,
+Dropbox: 2GB storage limit for free version, no quick sharing feature
+JumboMail: cannot set password for shared files
+Sendspace: Download speed limit, maximum file size limit is only 300MB.

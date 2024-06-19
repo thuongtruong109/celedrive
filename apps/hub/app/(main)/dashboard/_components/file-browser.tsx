@@ -21,6 +21,7 @@ import {
 import { Doc } from "../../../../convex/_generated/dataModel";
 import { BsGridFill } from "react-icons/bs";
 import { CiBoxList } from "react-icons/ci";
+import { ContentTypeList } from "@/shared/content-type";
 
 function Placeholder() {
   return (
@@ -110,9 +111,11 @@ export function FileBrowser({
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All</SelectItem>
-                <SelectItem value="image">Image</SelectItem>
-                <SelectItem value="csv">CSV</SelectItem>
-                <SelectItem value="pdf">PDF</SelectItem>
+                {
+                  ContentTypeList.map((type) => (
+                    <SelectItem key={type} value={type} className="capitalize">{type}</SelectItem>
+                  ))
+                }
               </SelectContent>
             </Select>
           </div>

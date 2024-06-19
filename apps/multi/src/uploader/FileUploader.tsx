@@ -8,10 +8,10 @@ const FileUploader: React.FC<{
     {({ getRootProps, getInputProps }) => (
       <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
-        <p>
-          Drag the file you want to share or...
+        <div>
+          <p>Drag the file you want to share or...</p>
           <button>Upload a file</button>
-        </p>
+        </div>
       </div>
     )}
   </Dropzone>

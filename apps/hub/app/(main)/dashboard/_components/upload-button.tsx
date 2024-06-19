@@ -31,6 +31,7 @@ import { useToast } from "@/lib/use-toast";
 import { Loader2 } from "lucide-react";
 import { Doc } from "../../../../convex/_generated/dataModel";
 import { RiUploadCloud2Line } from "react-icons/ri";
+import { ContentType } from "@/shared/content-type";
 
 const formSchema = z.object({
   title: z.string().min(1).max(200),
@@ -69,18 +70,20 @@ export function UploadButton() {
     });
     const { storageId } = await result.json();
 
-    const types = {
-      "image/png": "image",
-      "application/pdf": "pdf",
-      "text/csv": "csv",
-    } as Record<string, Doc<"files">["type"]>;
+    // const types = {
+    //   "image/png": "image",
+    //   "application/pdf": "pdf",
+    //   "text/csv": "csv",
+    // } as Record<string, Doc<"files">["type"]>;
+
+    const types = ContentType as Record<string, Doc<"files">["type"]>;
 
     try {
       await createFile({
         name: values.title,
         fileId: storageId,
         orgId,
-        type: types[fileType],
+        type: types[fileType] ?? "file",
       });
 
       form.reset();
