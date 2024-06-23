@@ -25,7 +25,7 @@ http.route({
       switch (result.type) {
         case "user.created":
           await ctx.runMutation(internal.users.createUser, {
-            tokenIdentifier: `https://guiding-ghost-94.clerk.accounts.dev|${result.data.id}`,
+            tokenIdentifier: `https://alive-dane-89.clerk.accounts.dev|${result.data.id}`,
             name: `${result.data.first_name ?? ""} ${
               result.data.last_name ?? ""
             }`,
@@ -34,7 +34,7 @@ http.route({
           break;
         case "user.updated":
           await ctx.runMutation(internal.users.updateUser, {
-            tokenIdentifier: `https://guiding-ghost-94.clerk.accounts.dev|${result.data.id}`,
+            tokenIdentifier: `https://alive-dane-89.clerk.accounts.dev|${result.data.id}`,
             name: `${result.data.first_name ?? ""} ${
               result.data.last_name ?? ""
             }`,
@@ -43,7 +43,7 @@ http.route({
           break;
         case "organizationMembership.created":
           await ctx.runMutation(internal.users.addOrgIdToUser, {
-            tokenIdentifier: `https://guiding-ghost-94.clerk.accounts.dev|${result.data.public_user_data.user_id}`,
+            tokenIdentifier: `https://alive-dane-89.clerk.accounts.dev|${result.data.public_user_data.user_id}`,
             orgId: result.data.organization.id,
             role: result.data.role === "org:admin" ? "admin" : "member",
           });
@@ -51,7 +51,7 @@ http.route({
         case "organizationMembership.updated":
           console.log(result.data.role);
           await ctx.runMutation(internal.users.updateRoleInOrgForUser, {
-            tokenIdentifier: `https://guiding-ghost-94.clerk.accounts.dev|${result.data.public_user_data.user_id}`,
+            tokenIdentifier: `https://alive-dane-89.clerk.accounts.dev|${result.data.public_user_data.user_id}`,
             orgId: result.data.organization.id,
             role: result.data.role === "org:admin" ? "admin" : "member",
           });
