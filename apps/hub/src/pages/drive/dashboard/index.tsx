@@ -1,6 +1,5 @@
 import GetFiles from "@/components/GetFiles";
 import GetFolders from "@/components/GetFolders";
-import FileHeader from "@/components/FileHeader";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
