@@ -1,4 +1,4 @@
-import { database } from "@/shared";
+import { database } from "@/lib/firebase";
 import {
   collection,
   addDoc,

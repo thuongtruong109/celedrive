@@ -1,5 +1,5 @@
 import { onSnapshot, collection, query, where } from "firebase/firestore";
-import { database } from "@/shared";
+import { database } from "@/lib/firebase";
 import { useEffect, useState } from "react";
 
 let files = collection(database, "files");
