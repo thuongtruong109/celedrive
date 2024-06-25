@@ -1,4 +1,4 @@
-import { SideNav } from "@/_components/side-nav";
+import { SideNav } from "@/_components/fixtures/SideNav";
 
 export default function MainLayout({
   children,

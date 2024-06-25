@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -73,6 +74,9 @@
   * {
     @apply border-border;
   }
+  /* html {
+    font-family: 'Poppins', sans-serif;
+  } */
   body {
     @apply bg-background text-foreground;
     background-image: url("/bg.jpg");
@@ -87,4 +91,18 @@
     font-weight: 400;
     font-style: normal;
   }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 20px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+  
 }

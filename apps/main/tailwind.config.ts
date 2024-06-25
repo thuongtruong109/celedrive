@@ -16,6 +16,9 @@ const config = {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
+        // lg: '1125px',
+        // xl: '1125px',
+        // '2xl': '1125px',
       },
     },
     extend: {
@@ -57,6 +60,16 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // 'ct-dark-600': '#222',
+        // 'ct-dark-200': '#e5e7eb',
+        // 'ct-dark-100': '#f5f6f7',
+        // 'ct-blue-600': '#2363eb',
+        // 'ct-yellow-600': '#f9d13e',
+        textC: "#444746",
+        textC2: "#4285F4",
+        bgc: "#F7F9FC",
+        darkC2: "#EDF2FC",
+        darkC: "#E1E5EA",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -76,6 +89,12 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      screens: {
+        tablet: "840px",
+      },
+      fontFamily: {
+        Poppins: ['Poppins, sans-serif'],
       },
     },
   },

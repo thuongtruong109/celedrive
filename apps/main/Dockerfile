@@ -16,4 +16,4 @@ RUN npm run build
 
 EXPOSE 3001 3003
 
-CMD [ "npm", "run", "start" ]
+CMD [ "next", "start", "-p", "3003" ]

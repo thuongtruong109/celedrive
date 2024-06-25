@@ -10,9 +10,8 @@ import {
   DropdownMenuTrigger,
 } from "@/_components/ui/dropdown-menu";
 import { Button } from "@/_components/ui/button";
-
-import { GoQuestion } from "react-icons/go";
-import { SharedServices } from "./shared/services";
+import { SharedServices } from "./shared";
+import { LINK_SERVICE } from "./shared";
 
 export default function LandingPage() {
   return (
@@ -21,20 +20,11 @@ export default function LandingPage() {
           The easiest way to upload and share files
         </h1>
         <p className="mt-6 text-lg leading-8 text-gray-600">
-          Make and account and start managing your files in less than a
-          minute.
+          Join and start managing your files now.
         </p>
         <div className="mt-10 flex flex-col min-[470px]:flex-row items-center justify-center gap-6">
           <Link
-            href="/guide"
-            className="rounded-md bg-slate-300 hover:bg-slate-400/50 px-3 py-[9px] flex items-center space-x-1.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            <GoQuestion />
-            <span>Guide</span>
-          </Link>
-
-          <Link
-            href="/dashboard/files"
+            href={LINK_SERVICE.DRIVE_DASHBOARD}
             className="rounded-md bg-purple-500 hover:bg-purple-600 px-3 py-[9px] flex items-center space-x-1.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             <IoFolderOpenOutline />

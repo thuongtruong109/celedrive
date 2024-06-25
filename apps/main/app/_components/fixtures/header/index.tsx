@@ -1,17 +1,8 @@
-import { Button } from "@/_components/ui/button";
-import {
-  OrganizationSwitcher,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-  useSession,
-} from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, memo } from "react";
 import './index.css'
-import { MdOutlineFingerprint } from "react-icons/md";
+import { GoQuestion } from "react-icons/go";
 
 const Header: FC = () => {
   return (
@@ -21,24 +12,13 @@ const Header: FC = () => {
           <span className="gradient-text text-2xl font-semibold hidden min-[480px]:block">Celedrive</span>
         </Link>
 
-        {/* <SignedIn>
-          <Button variant={"outline"}>
-            <Link href="/dashboard/files">Your Files</Link>
-          </Button>
-        </SignedIn> */}
-
-        <div className="flex gap-2">
-          <OrganizationSwitcher />
-          <UserButton />
-          <SignedOut>
-            <SignInButton>
-              <Button variant={"outline"} className="shadow-sm">
-                <MdOutlineFingerprint />
-                <span>Sign In</span>
-              </Button>
-            </SignInButton>
-          </SignedOut>
-        </div>
+        <Link
+            href="/guide"
+            className="rounded-md bg-slate-200 hover:bg-slate-300 px-3 py-[9px] flex items-center space-x-1.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+          <GoQuestion />
+          <span>Guide</span>
+        </Link>
     </header>
   );
 }

@@ -6,6 +6,7 @@ import { IoFileTrayFullOutline, IoFileTrayFull } from "react-icons/io5";
 import { SlStar } from "react-icons/sl";
 import { TiStarFullOutline } from "react-icons/ti";
 import { PiTrashLight, PiTrashFill } from "react-icons/pi";
+import { LINK_SERVICE } from "./link";
 
 export const HubServices: IService[] = [
     {
@@ -14,7 +15,7 @@ export const HubServices: IService[] = [
         desc: "View your files",
         icon: IoFileTrayFullOutline,
         matchIcon: IoFileTrayFull,
-        link: "/dashboard/files",
+        link: LINK_SERVICE.DRIVE_DASHBOARD
     },
     {
         id: 2,
@@ -22,7 +23,7 @@ export const HubServices: IService[] = [
         desc: "View your favorite files",
         icon: SlStar,
         matchIcon: TiStarFullOutline,
-        link: "/dashboard/favorites",
+        link: LINK_SERVICE.DRIVE_FAVORITES
     },
     {
         id: 3,
@@ -30,7 +31,7 @@ export const HubServices: IService[] = [
         desc: "View your deleted files",
         icon: PiTrashLight,
         matchIcon: PiTrashFill,
-        link: "/dashboard/trash",
+        link: LINK_SERVICE.DRIVE_TRASH
     },
 ]
 
@@ -41,7 +42,7 @@ export const SharedServices: IService[] = [
         desc: 'Share your files with the world',
         icon: HiOutlineUserGroup,
         matchIcon: HiMiniUserGroup,
-        link: '/share/public',
+        link: LINK_SERVICE.SHARE_PUBLIC,
     },
     {
         id: 2,
@@ -49,7 +50,7 @@ export const SharedServices: IService[] = [
         desc: 'Share your files with a password',
         icon: MdSecurity,
         matchIcon: MdSecurity,
-        link: '/share/protected',
+        link: LINK_SERVICE.SHARE_PROTECTED,
     },
     {
         id: 3,
@@ -57,7 +58,7 @@ export const SharedServices: IService[] = [
         desc: 'Share your files with a colleague',
         icon: RiUserShared2Line,
         matchIcon: RiUserShared2Fill,
-        link: '/share/single/sender',
+        link: LINK_SERVICE.SHARE_SINGLE_SENDER,
     },
     {
         id: 4,
@@ -65,7 +66,7 @@ export const SharedServices: IService[] = [
         desc: 'Receive files from a colleague',
         icon: RiUserReceived2Line,
         matchIcon: RiUserReceivedFill,
-        link: '/share/single/receiver',
+        link: LINK_SERVICE.SHARE_SINGLE_RECEIVER,
     },
     {
         id: 5,
@@ -73,7 +74,7 @@ export const SharedServices: IService[] = [
         desc: 'Share your files with multiple colleagues',
         icon: HiOutlineRectangleGroup,
         matchIcon: RiStackshareLine,
-        link: '/share/group',
+        link: LINK_SERVICE.SHARE_GROUP,
     },
     {
         id: 6,
@@ -81,6 +82,6 @@ export const SharedServices: IService[] = [
         desc: 'Share your files with multiple colleagues',
         icon: RiStackshareLine,
         matchIcon: HiMiniRectangleGroup,
-        link: '/share/multi',
+        link: LINK_SERVICE.SHARE_MULTI,
     }, 
 ]
