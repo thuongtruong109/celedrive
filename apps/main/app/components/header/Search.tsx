@@ -93,20 +93,22 @@ function Search() {
         placeholder="Search in Drive"
         className={`${widthStyle} rounded-full bg-bgc px-2 py-2 indent-9 shadow-darkC
         placeholder:text-slate-400 focus:rounded-b-none
-        focus:rounded-t-2xl focus:bg-white focus:shadow-md focus:outline-none`}
+        focus:rounded-t-xl focus:bg-white focus:shadow-md focus:outline-none border focus:border-none`}
       />
       {onFocus && (
-        <div
-          className={`${widthStyle} absolute z-10 max-h-60 overflow-scroll rounded-b-2xl border-t
-      border-slate-300 bg-white pt-2 shadow-md shadow-darkC`}
-        >
-          {result.length < 1 && searchTest ? (
-            <div className="pl-5 text-sm text-gray-500">
-              No result match your search.
-            </div>
-          ) : (
-            result
-          )}
+        <div className={`pr-1 absolute z-10 rounded-b-xl border-t
+        border-slate-300 bg-white pt-2 shadow-md shadow-darkC ${widthStyle}`}>
+          <div
+            className={`overflow-y-auto max-h-60`}
+          >
+            {result.length < 1 && searchTest ? (
+              <div className="pl-5 text-sm text-gray-500">
+                No result match your search.
+              </div>
+            ) : (
+              result
+            )}
+          </div>
         </div>
       )}
     </div>

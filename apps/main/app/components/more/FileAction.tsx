@@ -17,7 +17,6 @@ import { deleteFile, renameFile, starFile, trashFile } from "@/services/Firestor
 
 export function FileAction({
     file,
-    setOpenMenu,
     select,
     isFolderComp,
     folderId,

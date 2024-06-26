@@ -14,10 +14,6 @@ interface IGithubAuth {
   clientSecret: string;
 }
 
-interface UserInfoProps {
-  setDisplayUserInfo: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
 interface folderToggleProps {
   setFolderToggle: React.Dispatch<React.SetStateAction<boolean>>;
   setFolderName: React.Dispatch<React.SetStateAction<string>>;
@@ -78,7 +74,6 @@ interface FileDropDownProps {
   folderId: string;
   isFolderComp: boolean;
   select: string;
-  setOpenMenu: React.Dispatch<React.SetStateAction<string>>;
   setRenameToggle: React.Dispatch<React.SetStateAction<string>>;
 }
 

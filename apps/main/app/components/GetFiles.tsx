@@ -4,15 +4,12 @@ import React, { useState } from "react";
 import { useFetchFiles } from "@/hooks/FetchFiles";
 import Image from "next/image";
 import fileIcons from "@/components/FileIcons";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { useSession } from "next-auth/react";
-import FileDropDown from "./more/OptionMenu";
 import { useFetchAllFiles } from "@/hooks/FetchAllFiles";
 import Rename from "./more/Rename";
 import { FileAction } from "./more/FileAction";
 
 function GetFiles({ folderId, select }: { folderId: string; select: string }) {
-  const [openMenu, setOpenMenu] = useState("");
   const [renameToggle, setRenameToggle] = useState("");
 
   const { data: session } = useSession();
@@ -84,7 +81,6 @@ function GetFiles({ folderId, select }: { folderId: string; select: string }) {
                 </span>
               </div>
               <FileAction file={file}
-                  setOpenMenu={setOpenMenu}
                   isFolderComp={false}
                   select={select}
                   folderId=""

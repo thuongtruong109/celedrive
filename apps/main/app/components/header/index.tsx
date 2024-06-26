@@ -25,7 +25,7 @@ function Header() {
         onClick={() => {
           session ? setDisplayUserInfo((prev) => !prev) : signIn();
         }}
-        className="max-h-[34px] max-w-[34px] min-w-[34px] min-h-[34px] cursor-pointer rounded-full"
+        className={`max-h-[34px] max-w-[34px] min-w-[34px] min-h-[34px] cursor-pointer rounded-full ${displayUserInfo ? 'ring-2 ring-offset-1 ring-success' : ''}`}
       >
         {session ? (
           <Image
@@ -40,9 +40,9 @@ function Header() {
           <FaUserCircle className="h-full w-full" />
         )}
       </div>
-      <div className="absolute right-5 top-14">
+      <div className="absolute right-0 top-14">
         {session && displayUserInfo && (
-          <UserInfo setDisplayUserInfo={setDisplayUserInfo} />
+          <UserInfo setDisplayUserInfo={setDisplayUserInfo} email={session?.user?.email as string} name={session?.user?.name as string} image={session?.user?.image as string} />
         )}
       </div>
     </header>

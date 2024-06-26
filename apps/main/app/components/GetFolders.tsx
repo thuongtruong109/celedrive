@@ -1,34 +1,25 @@
 "use client";
 
 import { useFetchFiles } from "@/hooks/FetchFiles";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AiFillFolder } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useFetchAllFiles } from "@/hooks/FetchAllFiles";
-import FileDropDown from "./more/OptionMenu";
 import Rename from "./more/Rename";
 import { FileAction } from "./more/FileAction";
 
 function GetFolders({ folderId, select }: { folderId: string; select: string }) {
   const router = useRouter();
-  const [openMenu, setOpenMenu] = useState("");
   const [renameToggle, setRenameToggle] = useState("");
 
   const { data: session } = useSession();
 
-  // Fetch all files unconditionally
   const fetchFiles = useFetchFiles(folderId, session?.user?.email!);
   const fetchAllFiles = useFetchAllFiles(session?.user?.email!);
 
-  // Decide which list to use based on `select`
   const folderList = select ? fetchAllFiles : fetchFiles;
-
-  const handleMenuToggle = (fileId: string) => {
-    setRenameToggle("");
-    setOpenMenu((prevOpenMenu) => (prevOpenMenu === fileId ? "" : fileId));
-  };
 
   const folders = folderList.map((folder) => {
     let condition = folder?.isFolder && !folder?.isTrashed;
@@ -52,27 +43,16 @@ function GetFolders({ folderId, select }: { folderId: string; select: string }) 
               {folder.folderName}
             </span>
           </div>
-          <BsThreeDotsVertical
+          {/* <BsThreeDotsVertical
             onClick={() => handleMenuToggle(folder.id)}
             className="h-6 w-6 cursor-pointer rounded-full p-1 hover:bg-[#ccc]"
-          />
-          {/* {openMenu === folder.id && (
-            <FileDropDown
-              file={folder}
-              setOpenMenu={setOpenMenu}
+          /> */}
+          <FileAction file={folder}
               isFolderComp={true}
               select={select}
               folderId={folder.id}
               setRenameToggle={setRenameToggle}
-            />
-          )} */}
-           <FileAction file={folder}
-                setOpenMenu={setOpenMenu}
-                isFolderComp={true}
-                select={select}
-                folderId={folder.id}
-                setRenameToggle={setRenameToggle}
-            />
+          />
           {renameToggle === folder.id && (
             <Rename
               setRenameToggle={setRenameToggle}

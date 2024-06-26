@@ -9,6 +9,7 @@ import ProgressIndicator from "../../ProgressIndicator";
 import { addFolder } from "@/services/Firestore";
 import { useSession } from "next-auth/react";
 import { useParams } from "next/navigation";
+import { Button } from "@/_components/ui/button";
 
 export default function SideMenu() {
   const params = useParams<{ id: string }>()
@@ -54,15 +55,11 @@ export default function SideMenu() {
 
   return (
     <section className="relative w-16 h-auto space-y-2 duration-500">
-      <button
-        onClick={() => setIsDropDown(true)}
-        className="flex w-fit items-center justify-center space-x-1
-      rounded-lg bg-white px-2 py-1.5 text-textC shadow-md hover:shadow-[#ddd]
-      duration-300 hover:bg-darkC2"
-      >
-        <HiOutlinePlusSm className="h-6 w-6" />
-        <span className="hidden sm:block text-sm font-medium">New</span>
-      </button>
+      <Button onClick={() => setIsDropDown(true)} variant="default" className="px-2.5 !h-fit py-2">
+        <HiOutlinePlusSm />
+        <span>New</span>
+      </Button>
+
 
       {isDropDown && (
         <DropDown
