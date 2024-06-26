@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 import { useFetchAllFiles } from "@/hooks/FetchAllFiles";
 import FileDropDown from "./more/OptionMenu";
 import Rename from "./more/Rename";
+import { FileAction } from "./more/FileAction";
 
 function GetFolders({ folderId, select }: { folderId: string; select: string }) {
   const router = useRouter();
@@ -55,7 +56,7 @@ function GetFolders({ folderId, select }: { folderId: string; select: string }) 
             onClick={() => handleMenuToggle(folder.id)}
             className="h-6 w-6 cursor-pointer rounded-full p-1 hover:bg-[#ccc]"
           />
-          {openMenu === folder.id && (
+          {/* {openMenu === folder.id && (
             <FileDropDown
               file={folder}
               setOpenMenu={setOpenMenu}
@@ -64,7 +65,14 @@ function GetFolders({ folderId, select }: { folderId: string; select: string }) 
               folderId={folder.id}
               setRenameToggle={setRenameToggle}
             />
-          )}
+          )} */}
+           <FileAction file={folder}
+                setOpenMenu={setOpenMenu}
+                isFolderComp={true}
+                select={select}
+                folderId={folder.id}
+                setRenameToggle={setRenameToggle}
+            />
           {renameToggle === folder.id && (
             <Rename
               setRenameToggle={setRenameToggle}

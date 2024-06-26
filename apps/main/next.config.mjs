@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // reactStrictMode: true,
-    // swcMinify: true,
+    reactStrictMode: true,
+    swcMinify: true,
     /**
      * If you are using `appDir` then you must comment the below `i18n` config out.
      * @see https://github.com/vercel/next.js/issues/41980
@@ -11,7 +11,21 @@ const nextConfig = {
         defaultLocale: "en",
     },
     images: {
-        domains: ["firebasestorage.googleapis.com", "lh3.googleusercontent.com"],
+        remotePatterns: [
+            {
+                protocol: "http",
+                hostname: "localhost",
+                port: "3000",
+            },
+            {
+                protocol: "https",
+                hostname: "firebasestorage.googleapis.com",
+            },
+            {
+                protocol: "https",
+                hostname: "lh3.googleusercontent.com",
+            },
+        ],
     },
 };
 

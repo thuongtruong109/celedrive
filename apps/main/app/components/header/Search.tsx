@@ -6,6 +6,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { AiFillFolder, AiOutlineSearch } from "react-icons/ai";
 import fileIcons from "../FileIcons";
 import { useRouter } from "next/navigation";
+import { LINK_SERVICE } from "@/shared";
 
 function Search() {
   const [searchTest, setSearchTest] = useState<string>("");
@@ -41,7 +42,7 @@ function Search() {
         key={item.id}
         onClick={() => {
           item.isFolder
-            ? router.push("/drive/folders/" + item.id)
+            ? router.push(`${LINK_SERVICE.DRIVE_FOLDERS}/${item.id}`)
             : openFile(item.fileLink);
         }}
         className="flex w-full cursor-pointer items-center space-x-3.5 border-blue-700 px-4 py-2 hover:border-l-2 hover:bg-darkC2"
@@ -81,8 +82,8 @@ function Search() {
 
   return (
     <div className={`relative ${widthStyle}`} onFocus={() => setOnFocus(true)}>
-      <span className="absolute left-2 top-1 h-9 w-9 cursor-pointer rounded-full p-2 hover:bg-darkC">
-        <AiOutlineSearch className="h-full w-full stroke-textC" stroke="2" />
+      <span className="absolute left-3 top-2 h-6 w-6">
+        <AiOutlineSearch className="h-full w-full text-slate-400" stroke="2" />
       </span>
 
       <input
@@ -90,8 +91,8 @@ function Search() {
         onChange={(e) => setSearchTest(e.target.value)}
         type="text"
         placeholder="Search in Drive"
-        className={`${widthStyle} rounded-full bg-darkC2 px-2 py-2 indent-11 shadow-darkC
-        placeholder:text-textC focus:rounded-b-none
+        className={`${widthStyle} rounded-full bg-bgc px-2 py-2 indent-9 shadow-darkC
+        placeholder:text-slate-400 focus:rounded-b-none
         focus:rounded-t-2xl focus:bg-white focus:shadow-md focus:outline-none`}
       />
       {onFocus && (

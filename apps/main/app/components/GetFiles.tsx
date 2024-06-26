@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 import FileDropDown from "./more/OptionMenu";
 import { useFetchAllFiles } from "@/hooks/FetchAllFiles";
 import Rename from "./more/Rename";
+import { FileAction } from "./more/FileAction";
 
 function GetFiles({ folderId, select }: { folderId: string; select: string }) {
   const [openMenu, setOpenMenu] = useState("");
@@ -23,11 +24,6 @@ function GetFiles({ folderId, select }: { folderId: string; select: string }) {
 
   const openFile = (fileLink: string) => {
     window.open(fileLink, "_blank");
-  };
-
-  const handleMenuToggle = (fileId: string) => {
-    setRenameToggle("");
-    setOpenMenu((prevOpenMenu) => (prevOpenMenu === fileId ? "" : fileId));
   };
 
   const list = fileList.map((file) => {
@@ -87,20 +83,13 @@ function GetFiles({ folderId, select }: { folderId: string; select: string }) {
                   {file.fileName}
                 </span>
               </div>
-              <BsThreeDotsVertical
-                onClick={() => handleMenuToggle(file.id)}
-                className="h-6 w-6 cursor-pointer rounded-full p-1 hover:bg-[#ccc]"
-              />
-              {openMenu === file.id && (
-                <FileDropDown
-                  file={file}
+              <FileAction file={file}
                   setOpenMenu={setOpenMenu}
                   isFolderComp={false}
                   select={select}
                   folderId=""
                   setRenameToggle={setRenameToggle}
-                />
-              )}
+              />
               {renameToggle === file.id && (
                 <Rename
                   setRenameToggle={setRenameToggle}
