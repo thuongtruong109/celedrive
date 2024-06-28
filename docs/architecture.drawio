@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-06-10T17:31:40.051Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0" etag="WbZmJFcLE9zIREUBzDgJ" version="24.5.2" type="device">
+<mxfile host="app.diagrams.net" modified="2024-06-27T05:53:05.976Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0" etag="nKAkqlAcRQ2T7rYWfi8r" version="24.6.3" type="device">
   <diagram name="Page-1" id="r55egGYTYfPF11YwZ8IX">
     <mxGraphModel dx="1426" dy="785" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -39,7 +39,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="8J-j7O59oHdIaS3BFxA8-13" value="Internet" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngkey.com/png/full/450-4500237_internet-icon-world-wide-web-logo-png.png;fontSize=10;fontStyle=1;shadow=1;" parent="1" vertex="1">
-          <mxGeometry x="250" y="575" width="50" height="50" as="geometry" />
+          <mxGeometry x="250" y="577" width="45" height="45" as="geometry" />
         </mxCell>
         <mxCell id="8J-j7O59oHdIaS3BFxA8-14" value="" style="endArrow=classic;html=1;rounded=0;shadow=1;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -69,9 +69,6 @@
         </mxCell>
         <mxCell id="8J-j7O59oHdIaS3BFxA8-23" value="&lt;font color=&quot;#0066cc&quot; style=&quot;font-size: 10px;&quot;&gt;request&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=-30;" parent="1" vertex="1">
           <mxGeometry x="140" y="630" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="8J-j7O59oHdIaS3BFxA8-25" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;&lt;b&gt;Forward Proxy&lt;/b&gt;&lt;/font&gt;" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/other/API_Proxy.svg;clipPath=inset(0% 0% 0% 0%);shadow=1;" parent="1" vertex="1">
-          <mxGeometry x="390" y="578" width="79.2" height="44" as="geometry" />
         </mxCell>
         <mxCell id="8J-j7O59oHdIaS3BFxA8-28" value="" style="endArrow=classic;html=1;rounded=0;shadow=1;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -135,10 +132,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="8J-j7O59oHdIaS3BFxA8-87" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fillColor=none;arcSize=8;shadow=1;" parent="1" vertex="1">
-          <mxGeometry x="640" y="622" width="370" height="180" as="geometry" />
+          <mxGeometry x="640" y="622" width="330" height="180" as="geometry" />
         </mxCell>
         <mxCell id="8J-j7O59oHdIaS3BFxA8-88" value="Hub store" style="swimlane;whiteSpace=wrap;html=1;rounded=1;dashed=1;strokeColor=none;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#f8cecc;arcSize=32;startSize=20;shadow=0;" parent="1" vertex="1">
-          <mxGeometry x="640" y="622" width="370" height="40" as="geometry">
+          <mxGeometry x="640" y="622" width="330" height="40" as="geometry">
             <mxRectangle width="150" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -300,9 +297,6 @@
             <mxPoint x="-9" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="8J-j7O59oHdIaS3BFxA8-144" value="Convex database" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn.sanity.io/images/o0o2tn5x/production/285d09c87a0afb46b81044a49932f14539eb4778-400x400.png;fontStyle=1;fontSize=10;shadow=1;" parent="1" vertex="1">
-          <mxGeometry x="729.3199999999999" y="742" width="38.6" height="38.6" as="geometry" />
-        </mxCell>
         <mxCell id="8J-j7O59oHdIaS3BFxA8-149" value="" style="endArrow=classic;html=1;rounded=1;fontFamily=Helvetica;fontSize=12;fontColor=default;strokeColor=#99004D;curved=0;shadow=1;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="700" y="683" as="sourcePoint" />
@@ -316,9 +310,6 @@
           <mxGeometry x="-0.2625" relative="1" as="geometry">
             <mxPoint x="6" y="-10" as="offset" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="8J-j7O59oHdIaS3BFxA8-151" value="Clerk" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn.sanity.io/images/o0o2tn5x/production/2399b991025c365aafaa6fca85d91deac801e654-1046x1046.png;shadow=1;fontStyle=1;fontSize=10;" parent="1" vertex="1">
-          <mxGeometry x="767.92" y="662" width="40" height="40" as="geometry" />
         </mxCell>
         <mxCell id="8J-j7O59oHdIaS3BFxA8-152" value="" style="endArrow=classic;html=1;rounded=1;fontFamily=Helvetica;fontSize=12;fontColor=default;strokeColor=#99004D;curved=0;shadow=1;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -336,10 +327,10 @@
         </mxCell>
         <mxCell id="8J-j7O59oHdIaS3BFxA8-154" value="" style="endArrow=classic;html=1;rounded=1;fontFamily=Helvetica;fontSize=12;fontColor=default;curved=0;strokeColor=#99004D;shadow=1;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="807.92" y="682" as="sourcePoint" />
-            <mxPoint x="980" y="702" as="targetPoint" />
+            <mxPoint x="810" y="680" as="sourcePoint" />
+            <mxPoint x="942.08" y="700" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="980" y="682" />
+              <mxPoint x="942.08" y="680" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -349,24 +340,15 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="8J-j7O59oHdIaS3BFxA8-156" value="GitHub" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://pngimg.com/uploads/github/github_PNG40.png;clipPath=inset(5.33% 11.33% 13.33% 5.67%);shadow=1;fontSize=10;fontStyle=1" parent="1" vertex="1">
-          <mxGeometry x="900" y="712.21" width="37.84" height="37.08" as="geometry" />
+          <mxGeometry x="920" y="710.5" width="37.84" height="37.08" as="geometry" />
         </mxCell>
         <mxCell id="8J-j7O59oHdIaS3BFxA8-157" value="Google" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png;shadow=1;fontStyle=1;fontSize=10;" parent="1" vertex="1">
-          <mxGeometry x="840" y="712" width="35.83" height="35.83" as="geometry" />
-        </mxCell>
-        <mxCell id="8J-j7O59oHdIaS3BFxA8-158" value="Facebook" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://1.bp.blogspot.com/-S8HTBQqmfcs/XN0ACIRD9PI/AAAAAAAAAlo/FLhccuLdMfIFLhocRjWqsr9cVGdTN_8sgCPcBGAYYCw/s1600/f_logo_RGB-Blue_1024.png;shadow=1;fontStyle=1;fontSize=10;" parent="1" vertex="1">
-          <mxGeometry x="960" y="712" width="35.83" height="35.83" as="geometry" />
+          <mxGeometry x="860" y="712" width="35.83" height="35.83" as="geometry" />
         </mxCell>
         <mxCell id="8J-j7O59oHdIaS3BFxA8-159" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;strokeColor=#99004D;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="920" y="682" as="sourcePoint" />
-            <mxPoint x="920" y="702" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="8J-j7O59oHdIaS3BFxA8-160" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;strokeColor=#99004D;" parent="1" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="858" y="682" as="sourcePoint" />
-            <mxPoint x="857.71" y="702" as="targetPoint" />
+            <mxPoint x="882.08" y="680" as="sourcePoint" />
+            <mxPoint x="882.08" y="700" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="8J-j7O59oHdIaS3BFxA8-143" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;shadow=1;entryX=1.002;entryY=0.294;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="8J-j7O59oHdIaS3BFxA8-48" edge="1">
@@ -460,6 +442,15 @@
             <mxPoint x="600" y="935" as="sourcePoint" />
             <mxPoint x="560" y="935" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="4pComp0Wy-WOBlLn9EgE-1" value="Firebase" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://assets-global.website-files.com/631ec5866e474e5b101f6a41/6596996b5c4dca1a76a21e8a_Firebase.png;fontStyle=1;fontSize=10;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="727.9200000000001" y="740" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4pComp0Wy-WOBlLn9EgE-3" value="Forward proxy" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://trino.io/assets/images/logos/go.png;clipPath=inset(25.83% 1.33% 26.67% 1.33%);fontSize=9;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="386" y="581" width="83.68" height="32.67" as="geometry" />
+        </mxCell>
+        <mxCell id="4pComp0Wy-WOBlLn9EgE-7" value="NextAuth" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://assets.blackslate.io/projects/01/c6XkYXIreITGD11.png;fontSize=9;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="767.92" y="662" width="35.52" height="39.04" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

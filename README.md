@@ -1,4 +1,4 @@
-# celedrive
+# ![Favicon](/public/favicon.png) celedrive
 
 > Store and share your files with ease
 
@@ -25,9 +25,6 @@
     ✅ Share real-time single via one-time key required (temporary data) by TCP socket <br>
     ✅ Share real-time group via link, qr code (temporary data) by P2P external <br>
     ✅ Share real-time multi via link, qr code (temporary data) by P2P internal<br>
-<!-- * **Security**: <br>
-    ✅ Password hashing <br>
-    ✅ File encryption/decryption <br> -->
 
 ## Architecture
 
@@ -89,6 +86,10 @@
 - Gin gonic - Go (proxy server)
 - Vercel + Render + GitHub Pages (deployment)
 - LaTex (report documentation)
+
+## Comparison
+
+![Comparison](/docs/comparison.png)
 
 ## Resource
 

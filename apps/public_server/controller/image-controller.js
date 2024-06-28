@@ -14,7 +14,6 @@ export const uploadImage = async (request, response) =>{
         console.error(error.message);
         response.status(500).json({error: error.message})
     }
-
 }
 
 export const downloadImage = async (request, response) => {
