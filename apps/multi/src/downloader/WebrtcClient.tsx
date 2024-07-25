@@ -158,9 +158,9 @@ const WebrtcClient: React.FC<{ id: string }> = ({ id }) => {
   return (
     <section>
       <h1>
-        {step === STEPS.PROCESS_STEP_INFO && <>Ready to download</>}
-        {step === STEPS.PROCESS_STEP_CHUNK && <>Downloading</>}
-        {step === STEPS.PROCESS_STEP_COMPLETE && <>Download complete</>}
+        {step === STEPS.PROCESS_STEP_INFO && <>Ready to receive</>}
+        {step === STEPS.PROCESS_STEP_CHUNK && <>Receiving</>}
+        {step === STEPS.PROCESS_STEP_COMPLETE && <>Complete receipt</>}
       </h1>
       <div>
         <div className="uploaded-file">
@@ -184,9 +184,8 @@ const WebrtcClient: React.FC<{ id: string }> = ({ id }) => {
         )}
         {step === STEPS.PROCESS_STEP_COMPLETE && (
           <div>
-            <p>Click the link below to save the file on your computer.</p>
-            <div className="save-link">
-              <FontAwesomeIcon icon={faSave} />
+            <p>Click the button below to save the file.</p>
+            <div className="download-link">
               <a
                 href={url}
                 target="_blank"
@@ -194,7 +193,10 @@ const WebrtcClient: React.FC<{ id: string }> = ({ id }) => {
                 download={fileInfo?.name || ''}
                 ref={linkRef}
               >
-                {fileInfo?.name || ''}
+                
+                <button type="button" className="default-button">
+                  <FontAwesomeIcon icon={faSave} /> Download
+                </button>
               </a>
             </div>
           </div>

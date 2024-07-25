@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   faSpinner,
   faUser,
@@ -123,6 +123,13 @@ const Peer: React.FC<{
     progress = Math.min(progress, 99.99) // dont show 100% because of rounding if not complete
   }
 
+
+  useEffect(() => {
+    if (status === CONN_STATUSES.CONN_STATUS_OPEN && !start) {
+      handleStart()
+    }
+  }, [status, start, handleStart])
+
   return (
     <div className="peer">
       <FontAwesomeIcon className="user-icon" icon={icon} />
@@ -134,10 +141,6 @@ const Peer: React.FC<{
       )}
 
       <span className="peer-id">{ peer.connectionId.toString().replace("dc_", "") }</span>
-
-      {status === CONN_STATUSES.CONN_STATUS_OPEN && !start && (
-        <button onClick={handleStart}>Send</button>
-      )}
 
       {start && chunkNumber > 0 && (
         <div className="progress">
