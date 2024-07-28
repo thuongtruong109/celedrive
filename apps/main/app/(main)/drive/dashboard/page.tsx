@@ -44,17 +44,17 @@ export default function Page() {
                 </>
               ) : (
                 <div className="flex h-full flex-col items-center justify-center">
-                  <h2 className="mb-5 text-xl font-medium text-textC">
-                    A place for all of your files
-                  </h2>
                   <Image
                     draggable={false}
-                    src="/empty_state_drive.png"
-                    width={500}
-                    height={500}
+                    src="/empty_state_drive.svg"
+                    width={300}
+                    height={100}
                     alt="empty-state"
-                    className="w-full max-w-2xl object-cover object-center"
+                    className="w-full max-w-sm object-cover object-center"
                   />
+                  <h2 className="mb-5 text-lg font-medium text-textC">
+                    A place for all of your files
+                  </h2>
                 </div>
               )}
             </>

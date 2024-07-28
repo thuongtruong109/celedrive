@@ -7,7 +7,19 @@
 
 ## Preview
 
-![Preview](/public/preview.png)
+![Preview](/public/preview/banner.png)
+
+![Storage](/public/preview/hub_storage/all.png)
+
+![Public share](/public/preview/public_share/all.png)
+
+![Protected share](/public/preview/protected_share/all.png)
+
+![Single share](/public/preview/single_share/all.png)
+
+![Group share](/public/preview/group_share/all.png)
+
+![Multi share](/public/preview/multi_share/all.png)
 
 ## Features
 
@@ -32,7 +44,7 @@
 
 ## Services
 
-- **Main storage**:
+- **Main storage**
 
 ![Storage](/docs/sequence/hub_storage.png)
 
