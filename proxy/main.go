@@ -1,71 +1,12 @@
 package main
 
 import (
-	"io/ioutil"
-	"net/http"
-	"github.com/gin-gonic/gin"
-    "fmt"
-    "sync/atomic"
-    "os"
+	"os"
+
+	"github.com/thuongtruong109/gouse/net"
 )
 
-var urls = []string{os.Getenv("APP_1"), os.Getenv("APP_2")}
-var counter uint64
-
-func handleRequest(ctx *gin.Context) {
-	path := ctx.Param("path")
-
-    // Use atomic operation to safely increment the counter in concurrent environment
-    index := atomic.AddUint64(&counter, 1) % uint64(len(urls))
-    requestedURL := urls[index] + path[1:]
-
-    fmt.Println("Requested URL: ", requestedURL)
-
-	req, _ := http.NewRequest(ctx.Request.Method, requestedURL, ctx.Request.Body)
-
-	req.Header = ctx.Request.Header.Clone()
-	req.Header.Del("origin")
-	req.Header.Del("referer")
-
-	queryValues := req.URL.Query()
-	for k, v := range ctx.Request.URL.Query() {
-		queryValues.Add(k, v[0])
-	}
-	req.URL.RawQuery = queryValues.Encode()
-
-	response, err1 := http.DefaultClient.Do(req)
-
-	for k, v := range response.Header.Clone() {
-		ctx.Header(k, v[0])
-	}
-
-	ctx.Header("Access-Control-Allow-Origin", "*")
-	ctx.Header("Access-Control-Allow-Methods", "*")
-	ctx.Header("Access-Control-Allow-Headers", "*")
-
-	responseBytes, err2 := ioutil.ReadAll(response.Body)
-
-	if err1 != nil || err2 != nil {
-		ctx.IndentedJSON(http.StatusInternalServerError, gin.H{
-			"message": "Failed to request",
-		})
-		ctx.Done()
-		return
-	}
-
-	ctx.Data(response.StatusCode, response.Header.Get("Content-Type"), responseBytes)
-}
-
 func main() {
-	router := gin.Default()
-
-	router.GET("*path", handleRequest)
-	router.POST("*path", handleRequest)
-	router.PUT("*path", handleRequest)
-	router.PATCH("*path", handleRequest)
-	router.DELETE("*path", handleRequest)
-	router.OPTIONS("*path", handleRequest)
-	router.HEAD("*path", handleRequest)
-
-	router.Run(":3333")
+	// net.Proxy("3333", []string{"http://localhost:3000", "http://localhost:3001"})
+	net.Proxy("3333", []string{os.Getenv("APP_1"), os.Getenv("APP_2")})
 }
