@@ -4,14 +4,16 @@
 
 ![Lint config status](https://img.shields.io/github/actions/workflow/status/thuongtruong109/celedrive/lint.yml?logo=editorconfig&label=lint%20config)
 [![Licence](https://img.shields.io/github/license/antfu/regex-doctor.svg?style=flat)](https://github.com/thuongtruong109/regex-doctor/blob/main/LICENSE)
-
-## Overview
-
-Celedrive is a file storage and sharing platform implements a microservices-based architecture orchestrated through Docker containers, with a central Hub service coordinating multiple specialized sharing services. The system supports supports multiple sharing mechanisms including real-time facilitating temporary file transfers, wheareas enables users to store files permanently in the cloud.
-
-## Preview
+[![](https://img.shields.io/badge/🔗%20Demo%20link-8A2BE2)](https://celedrive.vercel.app)
+[![](https://img.shields.io/badge/📸%20Demo%20video-blue)](https://drive.google.com/file/d/13whVlhF6O4SRub2tYDSKKSdHtLs_QsGw/view?usp=drive_link)
 
 ![Preview](/public/preview/banner.png)
+
+## 🗾 Introduction
+
+Celedrive is a file storage and sharing platform implements a microservices-based architecture orchestrated through Docker containers, with a central hub service coordinating multiple specialized sharing services. The system supports multiple sharing mechanisms including real-time facilitating temporary file transfers, wheareas enables users to store files permanently in the cloud.
+
+## 🎗️ Preview
 
 ![Storage](/public/preview/hub_storage/all.png)
 
@@ -25,26 +27,13 @@ Celedrive is a file storage and sharing platform implements a microservices-base
 
 ![Multi share](/public/preview/multi_share/all.png)
 
-## Features
+## 💡 Features
 
-- **Storage**: <br>
-  ✅ Upload files <br>
-  ✅ Mark as favorite <br>
-  ✅ Download files <br>
-  ✅ View files (grid/list mode) <br>
-  ✅ Delete files <br>
-  ✅ Search files <br>
-  ✅ Filter files (by extension type) <br>
-- **Sharing**: <br>
-  ✅ Share public via link (pernament data, no password required) <br>
-  ✅ Share protected via one-time key required (pernament data) <br>
-  ✅ Share real-time single via one-time key required (temporary data) by TCP socket <br>
-  ✅ Share real-time group via link, qr code (temporary data) by P2P external <br>
-  ✅ Share real-time multi via link, qr code (temporary data) by P2P internal<br>
+![Features](/public/features.png)
 
-## Architecture
+## ⛳ Architecture
 
-Celedrive is a polyglot microservices architecture built around main hub storage service and five distinct file sharing mechanisms: public sharing, protected sharing, and three types of real-time sharing (single, group, and multi-user). The system uses a spoke model where a central Next.js application orchestrates multiple specialized services, each optimized for specific sharing patterns and data persistence requirements.
+Celedrive is a polyglot microservices architecture built around main hub storage service and five distinct file sharing mechanisms: public sharing, protected sharing, and three types of real-time sharing (single, group, and multi-user). The system uses a spoke model where a central Next.js application orchestrates multiple specialized services, each optimized for specific sharing patterns and data persistence requirements. The architecture ensures that each service can be independently scaled and maintained while preserving the overall system functionality through well-defined service contracts and dependency management.
 
 - System architecture
 
@@ -82,17 +71,18 @@ Celedrive employs a multi-database strategy where each sharing mechanism uses th
 
 ![Deployment architecture](/docs/architecture/deployment.png)
 
-## Tech Stack
+## 📦 Tech Stack
 
-| Service       | Port       | Technology         | Primary Function                   | Data Store       | Communication Pattern           | Key Libraries           | File Locations    | Dependencies                                        |
-| ------------- | ---------- | ------------------ | ---------------------------------- | ---------------- | ------------------------------- | ----------------------- | ----------------- | --------------------------------------------------- |
-| Hub Service   | 3001, 3003 | Next.js/TypeScript | Central dashboard, file management | Firebase, Convex | HTTP API, Server-side rendering | Clerk, Convex, Firebase | **hub/**          | **public_server**, **group**, **single**, **multi** |
-| Public Server | 8000       | Node.js/Express    | Public file uploads/downloads      | MongoDB          | REST API                        | MongoDB, Multer         | **public/server** | **mongo**                                           |
-| Single Share  | 5000       | Node.js/Socket.io  | 1:1 real-time transfers            | In-memory        | TCP Sockets                     | Real-time events        | **single/server** | None                                                |
-| Group Share   | 3002       | React/PeerJS       | Multi-user P2P sharing             | External P2P     | WebRTC signaling                | WebRTC signaling        | **group/**        | None                                                |
-| Multi Share   | 3000       | React/WebRTC       | Mesh network sharing               | Internal P2P     | Direct P2P connections          | Direct P2P              | **multi/**        | **peerjs**                                          |
-| Forward Proxy | 3333       | Go/Gin             | Load balancing, request routing    | None             | HTTP forwarding                 | HTTP reverse proxy      | **proxy/**        | **hub**                                             |
-| PeerJS Server | 5001       | Node.js/Express    | P2P signaling server               | None             | WebSocket                       | PeerJS                  | **peerjs/**       | None                                                |
+| Service       | Protocol  | Technology         | Primary Function                   | Data Store       | Communication Pattern           | Key Libraries           | File Locations    | Dependencies                                        |
+| ------------- | --------- | ------------------ | ---------------------------------- | ---------------- | ------------------------------- | ----------------------- | ----------------- | --------------------------------------------------- |
+| Hub Service   | HTTP/REST | Next.js/TypeScript | Central dashboard, file management | Firebase, Convex | HTTP API, Server-side rendering | Clerk, Convex, Firebase | **hub/**          | **public_server**, **group**, **single**, **multi** |
+| Public Server | HTTP/REST | Node.js/Express    | Public file uploads/downloads      | MongoDB          | REST API                        | MongoDB, Multer         | **public/server** | **mongo**                                           |
+| Protected     | HTTP/REST | Node.js/Express    | Protected file uploads/downloads   | Firebase         | REST API                        | Firebase, Multer        | **protected/**    | **firebase**                                        |
+| Single Share  | 5000      | Node.js/Socket.io  | 1:1 real-time transfers            | In-memory        | TCP Sockets                     | Real-time events        | **single/server** | None                                                |
+| Group Share   | 3002      | React/PeerJS       | Multi-user P2P sharing             | External P2P     | WebRTC signaling                | WebRTC signaling        | **group/**        | None                                                |
+| Multi Share   | 3000      | React/WebRTC       | Mesh network sharing               | Internal P2P     | Direct P2P connections          | Direct P2P              | **multi/**        | **peerjs**                                          |
+| Forward Proxy | 3333      | Go/Gin             | Load balancing, request routing    | None             | HTTP forwarding                 | HTTP reverse proxy      | **proxy/**        | **hub**                                             |
+| PeerJS Server | 5001      | Node.js/Express    | P2P signaling server               | None             | WebSocket                       | PeerJS                  | **peerjs/**       | None                                                |
 
 - System stack
 
@@ -131,7 +121,7 @@ Celedrive employs a multi-database strategy where each sharing mechanism uses th
 - Vercel + Render + GitHub Pages (deployment)
 - LaTex (report documentation)
 
-## Flow
+## 🌊 Flow
 
 The system uses a Go-based reverse proxy to route requests to appropriate services based on URL patterns and service availability:
 
@@ -151,11 +141,31 @@ The system uses a Go-based reverse proxy to route requests to appropriate servic
 
 ![File operation flow](/docs/flow/file_operation.png)
 
+- File upload flow
+
+![File upload flow](/docs/flow/file_upload.png)
+
+- File download flow
+
+![File download flow](/docs/flow/file_download.png)
+
 - Upload progress flow
 
 ![Upload progress flow](/docs/flow/upload_progress.png)
 
-## Sequence diagram
+- Storage flow
+
+![Storage flow](/docs/flow/storage.png)
+
+- Share flow
+
+![Share flow](/docs/flow/share.png)
+
+- Proxy flow
+
+![Proxy flow](/docs/flow//proxy.png)
+
+## 🪄 Sequence diagram
 
 - **Main storage**
 
@@ -181,7 +191,7 @@ The system uses a Go-based reverse proxy to route requests to appropriate servic
 
 ![Protected sharing](/docs/sequence/protected_share.png)
 
-## Patterns
+## 🕸️ Patterns
 
 | Sharing Type    | Authentication   | Authorization | Security Model          |
 | --------------- | ---------------- | ------------- | ----------------------- |
@@ -196,11 +206,11 @@ The system uses a Go-based reverse proxy to route requests to appropriate servic
 
 ## Components
 
-## Comparison
+## 🧭 Comparison
 
 ![Comparison](/docs/comparison.png)
 
-## Development
+## 🧩 Development
 
 The celedrive project is configured as a monorepo with both root-level tooling and individual application build configurations. The development environment uses modern JavaScript tooling with TypeScript support and automated code quality enforcement.
 
@@ -215,30 +225,26 @@ The celedrive project is configured as a monorepo with both root-level tooling a
 | start     | apps/multi | Serve built application        | yarn serve -s dist/                                 |
 | preview   | apps/multi | Preview production build       | vite preview                                        |
 
-##### Hub Service Configuration
-
+```bash
+# Hub Service Configuration
 NEXT_PUBLIC_SHARE_PUBLIC_API_URI=http://localhost:8000 - Points to public_server API
 NEXT_PUBLIC_SHARE_SINGLE_EMBED_URI=http://localhost:5000 - Points to single sharing service
 NEXT_PUBLIC_SHARE_GROUP_EMBED_URI=http://localhost:3002 - Points to group sharing service
 NEXT_PUBLIC_SHARE_MULTI_EMBED_URI=http://localhost:3000 - Points to multi sharing service
 
-##### Proxy Service Configuration
-
+# Proxy Service Configuration
 APP_1=http://localhost:3001/ - Primary hub instance
 APP_2=http://localhost:3003/ - Secondary hub instance
 
-##### Database Configuration
-
+# Database Configuration
 MONGO_URI=mongodb://mongo:27017 - MongoDB connection for public_server
+```
 
-## Resource
-
-- [Logo icon](https://img.icons8.com/water-color/100/centralized-network.png)
-
-## License
+## 🪪 License
 
 [MIT](./LICENSE) License ©Tran Nguyen Thuong Truong, 2024
 
+<!-- - [Logo icon](https://img.icons8.com/water-color/100/centralized-network.png) -->
 <!-- https://steveholgado.com/nginx-for-nextjs/ -->
 <!-- https://blog.logrocket.com/how-to-use-proxy-next-js/ -->
 <!-- https://www.sobyte.net/post/2021-09/https-proxy-in-golang-in-less-than-100-lines-of-code/ -->
